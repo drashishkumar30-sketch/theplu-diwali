@@ -7,6 +7,11 @@
 <meta name="theme-color" content="#fff4ed">
 <title>For My Thepluuu 🪔</title>
 
+<!-- Rounded Poppins typography -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
 <style>
 :root {
   --pink: #f17b9b;
@@ -15,7 +20,9 @@
   --brown: #795347;
 }
 
-* { box-sizing: border-box; }
+* {
+  box-sizing: border-box;
+}
 
 body {
   margin: 0;
@@ -24,8 +31,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display",
-    "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+  font-family: 'Poppins', sans-serif;
   background:
     radial-gradient(circle at 15% 15%, #ffe0e9 0, transparent 35%),
     radial-gradient(circle at 85% 85%, #ffe9c9 0, transparent 35%),
@@ -52,19 +58,22 @@ body {
 h1 {
   color: #d95e83;
   font-size: 29px;
-  line-height: 1.2;
+  line-height: 1.3;
+  font-weight: 800;
   margin: 14px 0;
 }
 
 h2 {
   color: #d95e83;
   font-size: 24px;
-  line-height: 1.25;
+  line-height: 1.4;
+  font-weight: 700;
 }
 
 p {
   font-size: 16px;
-  line-height: 1.65;
+  line-height: 1.8;
+  font-weight: 400;
   margin: 14px 0;
 }
 
@@ -113,9 +122,9 @@ button {
   border: none;
   border-radius: 30px;
   padding: 14px 25px;
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 700;
-  font-family: inherit;
+  font-family: 'Poppins', sans-serif;
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
   touch-action: manipulation;
@@ -156,16 +165,28 @@ button {
   position: relative;
 }
 
-#yesBtn { z-index: 2; }
-
-.ending { animation: popIn .65s ease both; }
-
-@keyframes popIn {
-  from { opacity: 0; transform: scale(.88); }
-  to { opacity: 1; transform: scale(1); }
+#yesBtn {
+  z-index: 2;
 }
 
-.hidden { display: none !important; }
+.ending {
+  animation: popIn .65s ease both;
+}
+
+@keyframes popIn {
+  from {
+    opacity: 0;
+    transform: scale(.88);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.hidden {
+  display: none !important;
+}
 
 /* Floating music button */
 #musicButton {
@@ -183,9 +204,11 @@ button {
   display: none;
 }
 
-#musicButton.visible { display: block; }
+#musicButton.visible {
+  display: block;
+}
 
-/* Real paper confetti */
+/* Colourful falling paper confetti */
 .confetti-piece {
   position: fixed;
   top: -24px;
@@ -202,14 +225,16 @@ button {
     transform: translate3d(0,0,0) rotate(0deg);
     opacity: 1;
   }
-  85% { opacity: 1; }
+  85% {
+    opacity: 1;
+  }
   100% {
     transform: translate3d(0,110vh,0) rotate(760deg);
     opacity: 0;
   }
 }
 
-/* Firework particles */
+/* Fireworks */
 .firework-particle {
   position: fixed;
   width: 9px;
@@ -232,10 +257,22 @@ button {
 }
 
 @media (max-width: 380px) {
-  .card { padding: 25px 16px; min-height: 540px; }
-  h1 { font-size: 26px; }
-  h2 { font-size: 22px; }
-  p { font-size: 15px; }
+  .card {
+    padding: 25px 16px;
+    min-height: 540px;
+  }
+
+  h1 {
+    font-size: 26px;
+  }
+
+  h2 {
+    font-size: 22px;
+  }
+
+  p {
+    font-size: 15px;
+  }
 }
 </style>
 </head>
@@ -249,24 +286,30 @@ button {
   <div id="content"></div>
 </main>
 
-<!-- Music file: keep this exact filename -->
-<audio id="backgroundMusic" src="haan-tu-hai.mp3.mp3"
-       preload="auto" loop playsinline></audio>
+<!-- Background music -->
+<audio id="backgroundMusic"
+       src="haan-tu-hai.mp3.mp3"
+       preload="auto"
+       loop
+       playsinline></audio>
 
 <button id="musicButton" onclick="toggleMusic()">
   🎵 Music: ON
 </button>
 
-<!-- Teddy mascot -->
+<!-- Teddy holding a glowing diya -->
 <template id="teddy">
 <svg class="mascot" viewBox="0 0 220 230"
      xmlns="http://www.w3.org/2000/svg"
-     role="img" aria-label="Cute teddy holding a glowing diya">
+     role="img"
+     aria-label="Cute teddy holding a glowing diya">
+
   <defs>
     <radialGradient id="glow">
       <stop offset="0%" stop-color="#fff3a3"/>
       <stop offset="100%" stop-color="#ffb84d" stop-opacity="0"/>
     </radialGradient>
+
     <linearGradient id="bear" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0%" stop-color="#d9a17c"/>
       <stop offset="100%" stop-color="#b97c5d"/>
@@ -274,6 +317,7 @@ button {
   </defs>
 
   <circle cx="110" cy="100" r="86" fill="#ffd8e4" opacity=".75"/>
+
   <path d="M110 17 C87 -5 56 13 69 39 C80 58 110 70 110 70
            C110 70 140 58 151 39 C164 13 133 -5 110 17Z"
         fill="#f18da9"/>
@@ -289,26 +333,33 @@ button {
   <ellipse cx="87" cy="111" rx="5" ry="7" fill="#49352f"/>
   <ellipse cx="133" cy="111" rx="5" ry="7" fill="#49352f"/>
   <ellipse cx="110" cy="127" rx="7" ry="5" fill="#49352f"/>
+
   <path d="M110 132 Q100 144 91 135 M110 132 Q120 144 129 135"
-        stroke="#49352f" stroke-width="3" fill="none"
-        stroke-linecap="round"/>
+        stroke="#49352f" stroke-width="3"
+        fill="none" stroke-linecap="round"/>
 
   <ellipse cx="77" cy="128" rx="10" ry="6" fill="#f5a2a9" opacity=".7"/>
   <ellipse cx="143" cy="128" rx="10" ry="6" fill="#f5a2a9" opacity=".7"/>
 
   <ellipse cx="110" cy="192" rx="47" ry="29" fill="url(#bear)"/>
-  <ellipse cx="78" cy="166" rx="18" ry="28" fill="#c58b69"
-           transform="rotate(-32 78 166)"/>
-  <ellipse cx="142" cy="166" rx="18" ry="28" fill="#c58b69"
-           transform="rotate(32 142 166)"/>
+
+  <ellipse cx="78" cy="166" rx="18" ry="28"
+           fill="#c58b69" transform="rotate(-32 78 166)"/>
+
+  <ellipse cx="142" cy="166" rx="18" ry="28"
+           fill="#c58b69" transform="rotate(32 142 166)"/>
 
   <circle cx="110" cy="171" r="34" fill="url(#glow)" opacity=".9"/>
+
   <path d="M76 184 Q110 164 144 184 L136 201 Q110 212 84 201Z"
         fill="#d98b39"/>
+
   <path d="M81 185 Q110 193 139 185"
         stroke="#ffdf87" stroke-width="3" fill="none"/>
+
   <path d="M110 177 Q96 162 110 146 Q124 162 110 177Z"
         fill="#ffae37"/>
+
   <path d="M110 173 Q103 163 110 155 Q117 163 110 173Z"
         fill="#fff5b0"/>
 </svg>
@@ -395,14 +446,18 @@ function showIntro() {
   content.innerHTML = `
     <div class="ending">
       <h1>Heyyy, my Thepluuu! 🪔</h1>
+
       <p>
         I have a tiny little Diwali surprise for someone
         who makes my world a whole lot brighter.
       </p>
+
       <p>
         And obviously, that someone is you, my favourite human. ❤️
       </p>
+
       <p class="small">A little something, made with lots of love.</p>
+
       <div class="buttons">
         <button class="primary" onclick="beginSurprise()">
           Open your surprise ✨
@@ -433,11 +488,15 @@ function nextStory() {
   content.innerHTML = `
     <div class="ending">
       <h2>A little something about you… 💗</h2>
+
       <img class="story-photo"
            src="${story.image}"
            alt="A beautiful picture of Yukti">
+
       <p>${story.text}</p>
+
       ${story.extra ? `<p>${story.extra}</p>` : ""}
+
       <div class="buttons">
         <button class="primary" onclick="nextStory()">
           ${current === stories.length - 1
@@ -456,17 +515,23 @@ function showQuestion() {
   content.innerHTML = `
     <div class="ending">
       <h1>One last question, baby… 💖</h1>
+
       <p>
         After all this cuteness, you didn't think I'd let you
         go without asking something, did you?
       </p>
+
       <h2>Will you celebrate Diwali with me, Thepluuu? 🪔</h2>
-      <p class="small">Choose wisely. The NO button has trust issues. 🤭</p>
+
+      <p class="small">
+        Choose wisely. The NO button has trust issues. 🤭
+      </p>
 
       <div class="question-buttons">
         <button class="primary" id="yesBtn" onclick="sayYes()">
           YESSS! 💗
         </button>
+
         <button id="noBtn" onclick="runAway()">NO 🙈</button>
       </div>
     </div>
@@ -497,15 +562,21 @@ function sayYes() {
   content.innerHTML = `
     <div class="ending">
       <h1>YASSSSS, MY THEPLUUU!!! 💖</h1>
+
       <p>
         I knew you'd say yes, baby girl! Here's to more laughter,
         more hugs, more kisses and countless beautiful Diwalis together.
       </p>
+
       <h2>I love you, my favourite patakha. 🪔❤️</h2>
+
       <p>
         Happy Diwali, cookie! Forever my favourite celebration. ✨
       </p>
-      <p class="small">P.S. You're stuck with me for many, many Diwalis. 🤭</p>
+
+      <p class="small">
+        P.S. You're stuck with me for many, many Diwalis. 🤭
+      </p>
     </div>
   `;
 
@@ -519,19 +590,23 @@ function sayYes() {
   grandCelebration();
 
   let count = 0;
+
   const celebrationInterval = setInterval(() => {
     grandCelebration();
     count++;
-    if (count >= 4) clearInterval(celebrationInterval);
+
+    if (count >= 4) {
+      clearInterval(celebrationInterval);
+    }
   }, 2500);
 }
 
 /* Colourful falling paper confetti */
 function launchConfetti() {
   const colours = [
-    "#ff4f87", "#ffd166", "#70d6ff", "#c77dff",
-    "#80ed99", "#ff8fab", "#ff9f1c", "#ffffff",
-    "#e76f9b", "#f6bd60"
+    "#ff4f87", "#ffd166", "#70d6ff",
+    "#c77dff", "#80ed99", "#ff8fab",
+    "#ff9f1c", "#ffffff", "#e76f9b", "#f6bd60"
   ];
 
   for (let i = 0; i < 180; i++) {
@@ -541,19 +616,26 @@ function launchConfetti() {
     piece.style.left = Math.random() * 100 + "vw";
     piece.style.width = (6 + Math.random() * 8) + "px";
     piece.style.height = (9 + Math.random() * 12) + "px";
+
     piece.style.backgroundColor =
       colours[Math.floor(Math.random() * colours.length)];
 
-    piece.style.borderRadius = Math.random() > .5 ? "50%" : "2px";
-    piece.style.animationDuration = (2.7 + Math.random() * 2.5) + "s";
-    piece.style.animationDelay = (Math.random() * .9) + "s";
+    piece.style.borderRadius =
+      Math.random() > .5 ? "50%" : "2px";
+
+    piece.style.animationDuration =
+      (2.7 + Math.random() * 2.5) + "s";
+
+    piece.style.animationDelay =
+      (Math.random() * .9) + "s";
 
     document.body.appendChild(piece);
+
     piece.addEventListener("animationend", () => piece.remove());
   }
 }
 
-/* Fireworks */
+/* Firework particles */
 function firework(x, y) {
   const colours = [
     "#ff4f87", "#ffd166", "#70d6ff",
@@ -566,22 +648,32 @@ function firework(x, y) {
 
     particle.style.left = x + "vw";
     particle.style.top = y + "vh";
+
     particle.style.backgroundColor =
       colours[Math.floor(Math.random() * colours.length)];
 
     const angle = (Math.PI * 2 * i) / 32;
     const distance = 45 + Math.random() * 100;
 
-    particle.style.setProperty("--x", Math.cos(angle) * distance + "px");
-    particle.style.setProperty("--y", Math.sin(angle) * distance + "px");
+    particle.style.setProperty(
+      "--x",
+      Math.cos(angle) * distance + "px"
+    );
+
+    particle.style.setProperty(
+      "--y",
+      Math.sin(angle) * distance + "px"
+    );
 
     document.body.appendChild(particle);
+
     particle.addEventListener("animationend", () => particle.remove());
   }
 }
 
 function grandCelebration() {
   launchConfetti();
+
   firework(20 + Math.random() * 15, 20 + Math.random() * 25);
   firework(65 + Math.random() * 15, 20 + Math.random() * 25);
   firework(40 + Math.random() * 20, 35 + Math.random() * 20);
