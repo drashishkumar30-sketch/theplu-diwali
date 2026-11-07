@@ -1,5 +1,6 @@
 
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -32,7 +33,7 @@ body {
   min-height: 620px;
   padding: 30px 23px;
   border-radius: 32px;
-  background: rgba(255,255,255,.91);
+  background: rgba(255,255,255,.94);
   box-shadow: 0 20px 60px rgba(110,60,60,.13);
   display: flex;
   flex-direction: column;
@@ -80,7 +81,7 @@ h1 {
   font-weight: 800;
   letter-spacing: -1.1px;
   line-height: 1.2;
-  color: #171313;
+  color: #dc5878;
   margin: 20px 0 17px;
 }
 
@@ -107,10 +108,13 @@ p {
   font-weight: 800;
 }
 
+/* FULL PHOTOGRAPHS - NO CROPPING */
+
 .story-photo {
-  width: min(280px, 85%);
-  height: 260px;
-  object-fit: cover;
+  width: min(340px, 90%);
+  height: auto;
+  max-height: 450px;
+  object-fit: contain;
   border: 7px solid white;
   border-radius: 23px;
   box-shadow: 0 12px 35px rgba(100,60,40,.16);
@@ -125,7 +129,7 @@ p {
   font-style: italic;
   line-height: 1.6;
   margin: 10px auto 24px;
-  max-width: 330px;
+  max-width: 340px;
 }
 
 .buttons {
@@ -178,7 +182,7 @@ button:active {
   line-height: 1.5;
 }
 
-/* Teddy mascot */
+/* TEDDY MASCOT */
 
 .mascot {
   width: min(230px, 70%);
@@ -195,14 +199,14 @@ button:active {
 }
 
 .final h1 {
-  color: #d65c76;
+  color: #dc5878;
 }
 
 .final .mascot {
   width: min(215px, 65%);
 }
 
-/* Celebration */
+/* CONFETTI */
 
 .confetti {
   position: fixed;
@@ -214,20 +218,31 @@ button:active {
 }
 
 @keyframes fall {
-  0% { transform: translateY(0) rotate(0); opacity: 1; }
-  100% { transform: translateY(110vh) rotate(700deg); opacity: 0; }
+  0% {
+    transform: translateY(0) rotate(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(110vh) rotate(700deg);
+    opacity: 0;
+  }
 }
+
+/* FIREWORKS */
 
 .firework {
   position: fixed;
   z-index: 19;
   pointer-events: none;
   font-size: 20px;
-  animation: explode 1.4s ease-out forwards;
+  animation: explode 1.5s ease-out forwards;
 }
 
 @keyframes explode {
-  0% { transform: translate(0,0) scale(.2); opacity: 1; }
+  0% {
+    transform: translate(0,0) scale(.2);
+    opacity: 1;
+  }
   100% {
     transform: translate(var(--x),var(--y)) scale(1.4);
     opacity: 0;
@@ -235,8 +250,14 @@ button:active {
 }
 
 @media(max-width:380px) {
-  .card { padding: 24px 17px; min-height: 570px; }
-  .story-photo { height: 225px; }
+  .card {
+    padding: 24px 17px;
+    min-height: 570px;
+  }
+
+  .story-photo {
+    max-height: 400px;
+  }
 }
 </style>
 </head>
@@ -247,18 +268,21 @@ button:active {
 
 <div class="progress" id="progress"></div>
 
-<!-- SAME TEDDY MASCOT USED ON OPENING AND FINAL SCREEN -->
+<!-- TEDDY MASCOT -->
 <template id="teddy">
-<svg class="mascot" viewBox="0 0 240 270" xmlns="http://www.w3.org/2000/svg">
+<svg class="mascot" viewBox="0 0 240 270"
+     xmlns="http://www.w3.org/2000/svg">
+
   <!-- Pink heart -->
-  <path d="M120 55 C85 15 30 45 65 94 L120 145 L175 94 C210 45 155 15 120 55Z"
+  <path d="M120 55 C85 15 30 45 65 94 L120 145
+           L175 94 C210 45 155 15 120 55Z"
         fill="#ff4380"/>
 
-  <!-- Bear ears -->
+  <!-- Ears -->
   <circle cx="62" cy="111" r="35" fill="#d8a876"/>
   <circle cx="178" cy="111" r="35" fill="#d8a876"/>
 
-  <!-- Bear head -->
+  <!-- Face -->
   <circle cx="120" cy="150" r="91" fill="#d8a876"/>
 
   <!-- Eyes -->
@@ -269,29 +293,38 @@ button:active {
   <circle cx="120" cy="161" r="9" fill="#684226"/>
 
   <!-- Smile -->
-  <path d="M101 177 Q120 194 139 177" fill="none"
-        stroke="#684226" stroke-width="5" stroke-linecap="round"/>
+  <path d="M101 177 Q120 194 139 177"
+        fill="none" stroke="#684226"
+        stroke-width="5" stroke-linecap="round"/>
 
-  <!-- Arms / paws holding diya -->
+  <!-- Paws -->
   <ellipse cx="76" cy="214" rx="26" ry="17" fill="#d8a876"/>
   <ellipse cx="164" cy="214" rx="26" ry="17" fill="#d8a876"/>
 
   <!-- Diya -->
-  <path d="M91 205 Q120 231 149 205 Q145 231 120 235 Q95 231 91 205Z"
+  <path d="M91 205 Q120 231 149 205
+           Q145 231 120 235 Q95 231 91 205Z"
         fill="#e78b35"/>
-  <path d="M98 210 Q120 221 142 210" fill="none"
-        stroke="#ffd36d" stroke-width="3"/>
+
+  <path d="M98 210 Q120 221 142 210"
+        fill="none" stroke="#ffd36d" stroke-width="3"/>
 
   <!-- Flame -->
-  <path d="M120 201 C99 181 122 172 120 158 C145 181 135 194 120 201Z"
+  <path d="M120 201 C99 181 122 172 120 158
+           C145 181 135 194 120 201Z"
         fill="#ffb52e"/>
-  <path d="M120 197 C111 187 122 181 122 175 C133 187 129 194 120 197Z"
+
+  <path d="M120 197 C111 187 122 181 122 175
+           C133 187 129 194 120 197Z"
         fill="#fff3ad"/>
 
   <!-- Sparkles -->
-  <path d="M36 177 L40 187 L50 191 L40 195 L36 205 L32 195 L22 191 L32 187Z"
+  <path d="M36 177 L40 187 L50 191 L40 195
+           L36 205 L32 195 L22 191 L32 187Z"
         fill="#ffca56"/>
-  <path d="M203 169 L207 178 L216 182 L207 186 L203 195 L199 186 L190 182 L199 178Z"
+
+  <path d="M203 169 L207 178 L216 182 L207 186
+           L203 195 L199 186 L190 182 L199 178Z"
         fill="#ffca56"/>
 </svg>
 </template>
@@ -299,24 +332,46 @@ button:active {
 <!-- SCREEN 1 -->
 <section class="screen active">
   <div class="mascot-slot"></div>
+
   <div class="eyebrow">A little Diwali surprise</div>
+
   <h1>Heyyy, my Thepluuu! 🪔</h1>
-  <p>I've got a tiny surprise for my favourite human. Ready for a little journey? ❤️</p>
+
+  <p>
+    I've got a tiny surprise for my favourite human.
+    Ready for a little journey? ❤️
+  </p>
+
   <div class="buttons">
-    <button class="next" onclick="go(1)">Let's begin ✨</button>
+    <button class="next" onclick="go(1)">
+      Let's begin ✨
+    </button>
   </div>
-  <div class="tiny">Made with lots of pyaar, just for you.</div>
+
+  <div class="tiny">
+    Made with lots of pyaar, just for you.
+  </div>
 </section>
 
 <!-- SCREEN 2 -->
 <section class="screen">
+
   <div class="eyebrow">Exhibit no. 01</div>
+
   <h1>How are you even real? 😮‍💨</h1>
-  <p>How does someone manage to look this breathtaking without even trying? You're honestly my favourite kind of distraction.</p>
+
+  <p>
+    How does someone manage to look this breathtaking
+    without even trying? You're honestly my favourite
+    kind of distraction.
+  </p>
 
   <img class="story-photo" src="yukti-01.jpeg" alt="Thepluuu">
+
   <div class="photo-caption">
-    How does someone manage to look this breathtaking without even trying? You're honestly my favourite kind of distraction. 😮‍💨
+    How does someone manage to look this breathtaking
+    without even trying? You're honestly my favourite
+    kind of distraction. 😮‍💨
   </div>
 
   <div class="buttons">
@@ -327,13 +382,22 @@ button:active {
 
 <!-- SCREEN 3 -->
 <section class="screen">
+
   <div class="eyebrow">Exhibit no. 02</div>
+
   <h1>That smile of yours… 🥹</h1>
-  <p>Some things deserve to be celebrated every single day. This smile is definitely one of them.</p>
+
+  <p>
+    Some things deserve to be celebrated every single day.
+    This smile is definitely one of them.
+  </p>
 
   <img class="story-photo" src="yukti-02.jpeg" alt="Her beautiful smile">
+
   <div class="photo-caption">
-    This smile deserves its own festival. And I hope I get to be one of the reasons behind it, always. 🥹
+    This smile deserves its own festival.
+    And I hope I get to be one of the reasons behind it,
+    always. 🥹
   </div>
 
   <div class="buttons">
@@ -344,13 +408,21 @@ button:active {
 
 <!-- SCREEN 4 -->
 <section class="screen">
+
   <div class="eyebrow">A little us moment</div>
+
   <h1>My favourite feeling. ❤️</h1>
-  <p>If I could freeze one feeling in time, it would be the feeling of being right next to you.</p>
+
+  <p>
+    If I could freeze one feeling in time,
+    it would be the feeling of being right next to you.
+  </p>
 
   <img class="story-photo" src="yukti-03.jpeg" alt="A favourite memory">
+
   <div class="photo-caption">
-    If I could freeze one feeling in time, it would be the feeling of being right next to you. ❤️
+    If I could freeze one feeling in time,
+    it would be the feeling of being right next to you. ❤️
   </div>
 
   <div class="buttons">
@@ -361,13 +433,21 @@ button:active {
 
 <!-- SCREEN 5 -->
 <section class="screen">
+
   <div class="eyebrow">The festive edition</div>
+
   <h1>Who's stealing the show? 🪔</h1>
-  <p>The diyas can compete for brightness all they want. We both know who's stealing the show.</p>
+
+  <p>
+    The diyas can compete for brightness all they want.
+    We both know who's stealing the show.
+  </p>
 
   <img class="story-photo" src="yukti-04.jpeg" alt="Her festive look">
+
   <div class="photo-caption">
-    The diyas can compete for brightness all they want. We both know who's stealing the show. 🪔✨
+    The diyas can compete for brightness all they want.
+    We both know who's stealing the show. 🪔✨
   </div>
 
   <div class="buttons">
@@ -378,13 +458,18 @@ button:active {
 
 <!-- SCREEN 6 -->
 <section class="screen">
+
   <div class="eyebrow">A slight change of mood</div>
+
   <h1>Let's keep things auspicious… 😈</h1>
 
-  <img class="story-photo" src="yukti-05.jpeg" alt="My favourite troublemaker">
+  <img class="story-photo" src="yukti-05.jpeg"
+       alt="My favourite troublemaker">
 
   <div class="photo-caption">
-    Those legs are making me forget all about the festivities… I'd love to lift them tonight, but let's keep things auspicious for now. 😏🪔
+    Those legs are making me forget all about the
+    festivities… I'd love to lift them tonight, but
+    let's keep things auspicious for now. 😏🪔
   </div>
 
   <p>Okay, I'll behave. For now. 🤭</p>
@@ -397,12 +482,17 @@ button:active {
 
 <!-- SCREEN 7 -->
 <section class="screen">
+
   <div class="eyebrow">The troublemaker herself</div>
+
   <h1>Pretty face. Dangerous charm. 🤭</h1>
 
   <img class="story-photo" src="yukti-06.jpeg" alt="Thepluuu">
+
   <div class="photo-caption">
-    Pretty face, dangerous charm, absolutely zero intention of letting me behave. What a combination, Thepluuu. 🤭
+    Pretty face, dangerous charm, absolutely zero
+    intention of letting me behave.
+    What a combination, Thepluuu. 🤭
   </div>
 
   <p>And somehow, I wouldn't have it any other way. ❤️</p>
@@ -415,37 +505,57 @@ button:active {
 
 <!-- SCREEN 8 -->
 <section class="screen final">
+
   <div class="mascot-slot"></div>
+
   <div class="eyebrow">My favourite kind of light</div>
+
   <h1>Happy Diwali, my love. ❤️</h1>
 
   <p>
-    May your life be full of laughter, good health, big dreams coming true
-    and a thousand reasons to smile. And may I always get a front-row
-    seat to your happiness. 🥹
+    May your life be full of laughter, good health,
+    big dreams coming true and a thousand reasons to smile.
+    And may I always get a front-row seat to your happiness. 🥹
   </p>
 
-  <img class="story-photo" src="yukti-07.jpeg" alt="My favourite person">
+  <img class="story-photo" src="yukti-07.jpeg"
+       alt="My favourite person">
+
   <div class="photo-caption">
-    My favourite person, my favourite festival, and hopefully many more Diwalis together. Here's to us. 💖
+    My favourite person, my favourite festival,
+    and hopefully many more Diwalis together.
+    Here's to us. 💖
   </div>
 
   <h1>Will you celebrate Diwali with me, Thepluuu? 🪔</h1>
-  <p>One festival. Two idiots in love. Unlimited pyaar, mithai and memories. Deal?</p>
+
+  <p>
+    One festival. Two idiots in love.
+    Unlimited pyaar, mithai and memories. Deal?
+  </p>
 
   <div class="buttons">
-    <button class="next" id="yes">YESSSS, BABY! 💖</button>
+    <button class="next" id="yes">
+      YESSSS, BABY! 💖
+    </button>
+
     <button id="no">No 🙄</button>
   </div>
 
-  <div class="tiny">Choose wisely, patakha. There's only one correct answer. 😌</div>
+  <div class="tiny">
+    Choose wisely, patakha. There's only one correct answer. 😌
+  </div>
 </section>
 
 </main>
 
 <script>
+
+/* SCREEN NAVIGATION */
+
 const screens = [...document.querySelectorAll(".screen")];
 const progress = document.getElementById("progress");
+
 let current = 0;
 
 screens.forEach((screen, index) => {
@@ -455,6 +565,8 @@ screens.forEach((screen, index) => {
 });
 
 const dots = [...progress.children];
+
+/* ADD TEDDY TO OPENING AND FINAL SCREEN */
 
 function addTeddy() {
   document.querySelectorAll(".mascot-slot").forEach(slot => {
@@ -468,28 +580,45 @@ addTeddy();
 
 function go(index) {
   screens[current].classList.remove("active");
+
   current = index;
+
   screens[current].classList.add("active");
 
   dots.forEach((dot, i) => {
     dot.classList.toggle("active", i === current);
   });
 
-  window.scrollTo({top: 0, behavior: "smooth"});
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
 }
 
-/* The NO button runs away */
+/* NO BUTTON RUNS AWAY */
 
 const noButton = document.getElementById("no");
 
 function moveNo() {
   const padding = 12;
-  const maxX = Math.max(padding, window.innerWidth - noButton.offsetWidth - padding);
-  const maxY = Math.max(padding, window.innerHeight - noButton.offsetHeight - padding);
+
+  const maxX = Math.max(
+    padding,
+    window.innerWidth - noButton.offsetWidth - padding
+  );
+
+  const maxY = Math.max(
+    padding,
+    window.innerHeight - noButton.offsetHeight - padding
+  );
 
   noButton.style.position = "fixed";
-  noButton.style.left = (padding + Math.random() * (maxX - padding)) + "px";
-  noButton.style.top = (padding + Math.random() * (maxY - padding)) + "px";
+
+  noButton.style.left =
+    (padding + Math.random() * (maxX - padding)) + "px";
+
+  noButton.style.top =
+    (padding + Math.random() * (maxY - padding)) + "px";
 }
 
 noButton.addEventListener("touchstart", event => {
@@ -500,85 +629,165 @@ noButton.addEventListener("touchstart", event => {
 noButton.addEventListener("mouseover", moveNo);
 noButton.addEventListener("click", moveNo);
 
-/* Confetti */
+/* CONFETTI */
 
 function launchConfetti() {
-  const pieces = ["💖", "✨", "🌸", "🎊", "🪔", "💛", "🎆"];
 
-  for (let i = 0; i < 85; i++) {
+  const pieces = [
+    "💖", "✨", "🌸", "🎊",
+    "🪔", "💛", "🎆", "❤️"
+  ];
+
+  for (let i = 0; i < 140; i++) {
+
     const item = document.createElement("span");
+
     item.className = "confetti";
-    item.textContent = pieces[Math.floor(Math.random() * pieces.length)];
+
+    item.textContent =
+      pieces[Math.floor(Math.random() * pieces.length)];
+
     item.style.left = Math.random() * 100 + "vw";
-    item.style.animationDelay = Math.random() * 1.2 + "s";
-    item.style.animationDuration = (2.5 + Math.random() * 2) + "s";
+
+    item.style.animationDelay =
+      Math.random() * 1.5 + "s";
+
+    item.style.animationDuration =
+      (3 + Math.random() * 2.5) + "s";
+
     document.body.appendChild(item);
-    setTimeout(() => item.remove(), 5500);
+
+    setTimeout(() => item.remove(), 6500);
   }
 }
 
-/* Fireworks */
+/* FIREWORKS */
 
 function firework(x, y) {
+
   const symbols = ["✦", "✧", "✨", "•"];
-  const colors = ["#ff4380", "#ffbd45", "#e8753c", "#b98aff", "#62c9e8"];
+
+  const colors = [
+    "#ff4380",
+    "#ffbd45",
+    "#e8753c",
+    "#b98aff",
+    "#62c9e8"
+  ];
 
   for (let i = 0; i < 30; i++) {
+
     const spark = document.createElement("span");
+
     spark.className = "firework";
-    spark.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+
+    spark.textContent =
+      symbols[Math.floor(Math.random() * symbols.length)];
+
     spark.style.left = x + "px";
     spark.style.top = y + "px";
+
     spark.style.color = colors[i % colors.length];
 
     const angle = Math.random() * Math.PI * 2;
     const distance = 50 + Math.random() * 110;
 
-    spark.style.setProperty("--x", Math.cos(angle) * distance + "px");
-    spark.style.setProperty("--y", Math.sin(angle) * distance + "px");
+    spark.style.setProperty(
+      "--x",
+      Math.cos(angle) * distance + "px"
+    );
+
+    spark.style.setProperty(
+      "--y",
+      Math.sin(angle) * distance + "px"
+    );
 
     document.body.appendChild(spark);
-    setTimeout(() => spark.remove(), 1500);
+
+    setTimeout(() => spark.remove(), 1600);
   }
 }
 
-function grandCelebration() {
-  launchConfetti();
-  firework(innerWidth * .2, innerHeight * .3);
-  firework(innerWidth * .8, innerHeight * .28);
-  firework(innerWidth * .5, innerHeight * .2);
+/* GRAND DIWALI CELEBRATION */
 
-  setTimeout(() => firework(innerWidth * .35, innerHeight * .55), 500);
-  setTimeout(() => firework(innerWidth * .7, innerHeight * .5), 900);
+function grandCelebration() {
+
+  launchConfetti();
+
+  const positions = [
+    [0.15, 0.25],
+    [0.50, 0.20],
+    [0.85, 0.25],
+    [0.25, 0.50],
+    [0.75, 0.50],
+    [0.50, 0.65]
+  ];
+
+  positions.forEach(([x, y], index) => {
+
+    setTimeout(() => {
+
+      firework(
+        window.innerWidth * x,
+        window.innerHeight * y
+      );
+
+    }, index * 350);
+
+  });
 }
 
-/* YES button */
+/* YES BUTTON */
 
 document.getElementById("yes").addEventListener("click", () => {
+
   const card = document.getElementById("mainCard");
 
   card.innerHTML = `
     <div class="mascot-slot"></div>
+
     <div class="eyebrow">The best answer ever</div>
+
     <h1>YASSSSS, MY THEPLUUU!!! 💖</h1>
+
     <p>
-      I knew you'd say yes, baby girl! Here's to more laughter,
-      more hugs, more kisses and countless beautiful Diwalis together.
+      I knew you'd say yes, baby girl!
+      Here's to more laughter, more hugs,
+      more kisses and countless beautiful Diwalis together.
     </p>
+
     <h1>I love you, my favourite patakha. 🪔❤️</h1>
-    <p>Happy Diwali, cookie! Forever my favourite celebration. ✨</p>
+
+    <p>
+      Happy Diwali, cookie!
+      Forever my favourite celebration. ✨
+    </p>
   `;
 
   addTeddy();
+
+  /* First celebration immediately */
+
   grandCelebration();
 
+  /* Repeat the fireworks and confetti */
+
   let count = 0;
+
   const celebration = setInterval(() => {
+
     grandCelebration();
+
     count++;
-    if (count >= 5) clearInterval(celebration);
+
+    if (count >= 5) {
+      clearInterval(celebration);
+    }
+
   }, 4000);
+
 });
+
 </script>
 
 </body>
