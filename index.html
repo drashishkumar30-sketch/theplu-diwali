@@ -13,12 +13,9 @@
   --deep-pink: #df527d;
   --cream: #fff8f0;
   --brown: #795347;
-  --gold: #e9ad48;
 }
 
-* {
-  box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 
 body {
   margin: 0;
@@ -42,10 +39,10 @@ body {
   max-width: 470px;
   min-height: 570px;
   padding: 30px 22px;
-  background: rgba(255,255,255,.88);
+  background: rgba(255,255,255,.9);
   border: 1px solid rgba(255,255,255,.9);
   border-radius: 30px;
-  box-shadow: 0 18px 55px rgba(126, 75, 83, .13);
+  box-shadow: 0 18px 55px rgba(126,75,83,.13);
   text-align: center;
   position: relative;
   overflow: hidden;
@@ -107,7 +104,7 @@ p {
 .progress-fill {
   height: 100%;
   width: 0%;
-  background: linear-gradient(90deg, #f49ab2, #e76d91);
+  background: linear-gradient(90deg,#f49ab2,#e76d91);
   border-radius: 20px;
   transition: width .3s ease;
 }
@@ -126,7 +123,7 @@ button {
 
 .primary {
   color: white;
-  background: linear-gradient(135deg, #f18eaa, #df5c83);
+  background: linear-gradient(135deg,#f18eaa,#df5c83);
   box-shadow: 0 7px 18px rgba(223,92,131,.23);
 }
 
@@ -159,22 +156,34 @@ button {
   position: relative;
 }
 
-#yesBtn {
-  z-index: 2;
-}
+#yesBtn { z-index: 2; }
 
-.ending {
-  animation: popIn .65s ease both;
-}
+.ending { animation: popIn .65s ease both; }
 
 @keyframes popIn {
   from { opacity: 0; transform: scale(.88); }
   to { opacity: 1; transform: scale(1); }
 }
 
-.hidden {
-  display: none !important;
+.hidden { display: none !important; }
+
+/* Floating music button */
+#musicButton {
+  position: fixed;
+  right: 17px;
+  bottom: 22px;
+  z-index: 1000001;
+  border: 1px solid rgba(255,255,255,.8);
+  border-radius: 40px;
+  padding: 12px 17px;
+  color: white;
+  background: linear-gradient(135deg,#f18eaa,#df5c83);
+  box-shadow: 0 6px 22px rgba(170,70,110,.3);
+  font-size: 14px;
+  display: none;
 }
+
+#musicButton.visible { display: block; }
 
 /* Real paper confetti */
 .confetti-piece {
@@ -182,7 +191,6 @@ button {
   top: -24px;
   z-index: 999999;
   pointer-events: none;
-  opacity: 1;
   animation-name: paperFall;
   animation-timing-function: linear;
   animation-fill-mode: forwards;
@@ -191,14 +199,12 @@ button {
 
 @keyframes paperFall {
   0% {
-    transform: translate3d(0, 0, 0) rotate(0deg);
+    transform: translate3d(0,0,0) rotate(0deg);
     opacity: 1;
   }
-  85% {
-    opacity: 1;
-  }
+  85% { opacity: 1; }
   100% {
-    transform: translate3d(0, 110vh, 0) rotate(760deg);
+    transform: translate3d(0,110vh,0) rotate(760deg);
     opacity: 0;
   }
 }
@@ -212,26 +218,21 @@ button {
   z-index: 999998;
   pointer-events: none;
   animation: burst 1.15s ease-out forwards;
-  will-change: transform, opacity;
 }
 
 @keyframes burst {
   0% {
-    transform: translate(0, 0) scale(1);
+    transform: translate(0,0) scale(1);
     opacity: 1;
   }
   100% {
-    transform: translate(var(--x), var(--y)) scale(.15);
+    transform: translate(var(--x),var(--y)) scale(.15);
     opacity: 0;
   }
 }
 
 @media (max-width: 380px) {
-  .card {
-    padding: 25px 16px;
-    min-height: 540px;
-  }
-
+  .card { padding: 25px 16px; min-height: 540px; }
   h1 { font-size: 26px; }
   h2 { font-size: 22px; }
   p { font-size: 15px; }
@@ -242,24 +243,28 @@ button {
 <body>
 
 <main class="card" id="card">
-
   <div class="progress">
     <div class="progress-fill" id="progressFill"></div>
   </div>
-
   <div id="content"></div>
-
 </main>
 
-<!-- Teddy mascot template -->
+<!-- Music file: keep this exact filename -->
+<audio id="backgroundMusic" src="haan-tu-hai.mp3.mp3"
+       preload="auto" loop playsinline></audio>
+
+<button id="musicButton" onclick="toggleMusic()">
+  🎵 Music: ON
+</button>
+
+<!-- Teddy mascot -->
 <template id="teddy">
 <svg class="mascot" viewBox="0 0 220 230"
-     xmlns="http://www.w3.org/2000/svg" role="img"
-     aria-label="Cute teddy bear holding a glowing diya">
-
+     xmlns="http://www.w3.org/2000/svg"
+     role="img" aria-label="Cute teddy holding a glowing diya">
   <defs>
     <radialGradient id="glow">
-      <stop offset="0%" stop-color="#fff3a3" stop-opacity="1"/>
+      <stop offset="0%" stop-color="#fff3a3"/>
       <stop offset="100%" stop-color="#ffb84d" stop-opacity="0"/>
     </radialGradient>
     <linearGradient id="bear" x1="0" y1="0" x2="1" y2="1">
@@ -306,42 +311,40 @@ button {
         fill="#ffae37"/>
   <path d="M110 173 Q103 163 110 155 Q117 163 110 173Z"
         fill="#fff5b0"/>
-
-  <path d="M100 205 Q110 214 120 205"
-        stroke="#f3d3ba" stroke-width="4" fill="none"
-        stroke-linecap="round"/>
 </svg>
 </template>
 
 <script>
 const content = document.getElementById("content");
 const progressFill = document.getElementById("progressFill");
+const music = document.getElementById("backgroundMusic");
+const musicButton = document.getElementById("musicButton");
 
 const stories = [
   {
     image: "yukti-01.jpeg",
-    text: "How does someone manage to look this breathtaking without even trying? You are honestly my favourite kind of distraction. 😮‍💨"
+    text: "How does someone manage to look this breathtaking without even trying? You're honestly my favourite kind of distraction. 😮‍💨"
   },
   {
     image: "yukti-02.jpeg",
-    text: "This smile deserves its own festival. And I hope I get to be one of the reasons behind it always. 🥹"
+    text: "This smile deserves its own festival. And I hope I get to be one of the reasons behind it, always. 🥹"
   },
   {
     image: "yukti-03.jpeg",
-    text: "If I could freeze one feeling in time it would be the feeling of being right next to you. ❤️"
+    text: "If I could freeze one feeling in time, it would be the feeling of being right next to you. ❤️"
   },
   {
     image: "yukti-04.jpeg",
-    text: "The diyas can compete for brightness all they want. We both know who is stealing the show. 🪔✨"
+    text: "The diyas can compete for brightness all they want. We both know who's stealing the show. 🪔✨"
   },
   {
     image: "yukti-05.jpeg",
-    text: "Those legs are making me forget all about the festivities. Ahhh I so badly want to lift them tonight but let's keep things auspicious for now. 😏🪔",
-    extra: "Okay fine I will behave. For now. 🤭"
+    text: "Those legs are making me forget all about the festivities… I'd love to lift them tonight, but let's keep things auspicious for now. 😏🪔",
+    extra: "Okay, I'll behave. For now. 🤭"
   },
   {
     image: "yukti-06.jpeg",
-    text: "Pretty face, dangerous charm, absolutely zero intention of letting me behave. What a combination babygirl. 🤭"
+    text: "Pretty face, dangerous charm, absolutely zero intention of letting me behave. What a combination, Thepluuu. 🤭"
   },
   {
     image: "yukti-07.jpeg",
@@ -352,8 +355,7 @@ const stories = [
 let current = -1;
 
 function addTeddy() {
-  const template = document.getElementById("teddy");
-  const clone = template.content.cloneNode(true);
+  const clone = document.getElementById("teddy").content.cloneNode(true);
   content.prepend(clone);
 }
 
@@ -363,29 +365,58 @@ function updateProgress() {
   progressFill.style.width = (step / total * 100) + "%";
 }
 
+function startMusic() {
+  musicButton.classList.add("visible");
+
+  music.play().then(() => {
+    musicButton.textContent = "🎵 Music: ON";
+  }).catch(() => {
+    musicButton.textContent = "▶ Play music";
+  });
+}
+
+function toggleMusic() {
+  if (music.paused) {
+    music.play().then(() => {
+      musicButton.textContent = "🎵 Music: ON";
+    }).catch(() => {
+      musicButton.textContent = "▶ Play music";
+    });
+  } else {
+    music.pause();
+    musicButton.textContent = "🔇 Music: OFF";
+  }
+}
+
 function showIntro() {
   current = -1;
   updateProgress();
 
   content.innerHTML = `
     <div class="ending">
-      <div id="teddySlot"></div>
       <h1>Heyyy, my Thepluuu! 🪔</h1>
       <p>
         I have a tiny little Diwali surprise for someone
         who makes my world a whole lot brighter.
       </p>
       <p>
-        And obviously that someone is you my favourite human. ❤️
+        And obviously, that someone is you, my favourite human. ❤️
       </p>
-      <p class="small">A little something made with lots of love.</p>
+      <p class="small">A little something, made with lots of love.</p>
       <div class="buttons">
-        <button class="primary" onclick="nextStory()">Open your surprise ✨</button>
+        <button class="primary" onclick="beginSurprise()">
+          Open your surprise ✨
+        </button>
       </div>
     </div>
   `;
 
   addTeddy();
+}
+
+function beginSurprise() {
+  startMusic();
+  nextStory();
 }
 
 function nextStory() {
@@ -402,16 +433,16 @@ function nextStory() {
   content.innerHTML = `
     <div class="ending">
       <h2>A little something about you… 💗</h2>
-      <img
-        class="story-photo"
-        src="${story.image}"
-        alt="A beautiful picture of Yukti"
-      >
+      <img class="story-photo"
+           src="${story.image}"
+           alt="A beautiful picture of Yukti">
       <p>${story.text}</p>
       ${story.extra ? `<p>${story.extra}</p>` : ""}
       <div class="buttons">
         <button class="primary" onclick="nextStory()">
-          ${current === stories.length - 1 ? "One last thing… 💖" : "Next surprise →"}
+          ${current === stories.length - 1
+            ? "One last thing… 💖"
+            : "Next surprise →"}
         </button>
       </div>
     </div>
@@ -424,17 +455,18 @@ function showQuestion() {
 
   content.innerHTML = `
     <div class="ending">
-      <div id="teddySlot"></div>
-      <h1>One last question baby !!💖</h1>
+      <h1>One last question, baby… 💖</h1>
       <p>
         After all this cuteness, you didn't think I'd let you
         go without asking something, did you?
       </p>
-      <h2>Will you celebrate Diwali with me JAAN? 🪔</h2>
+      <h2>Will you celebrate Diwali with me, Thepluuu? 🪔</h2>
       <p class="small">Choose wisely. The NO button has trust issues. 🤭</p>
 
       <div class="question-buttons">
-        <button class="primary" id="yesBtn" onclick="sayYes()">YESSS! 💗</button>
+        <button class="primary" id="yesBtn" onclick="sayYes()">
+          YESSS! 💗
+        </button>
         <button id="noBtn" onclick="runAway()">NO 🙈</button>
       </div>
     </div>
@@ -464,17 +496,16 @@ function sayYes() {
 
   content.innerHTML = `
     <div class="ending">
-      <div id="teddySlot"></div>
       <h1>YASSSSS, MY THEPLUUU!!! 💖</h1>
       <p>
-        I knew you'd say yes, baby girl! Here is to more laughter,
-        more hugs more kisses and countless beautiful Diwalis together! Bohot pyar karta hoon saath rehna mere .
+        I knew you'd say yes, baby girl! Here's to more laughter,
+        more hugs, more kisses and countless beautiful Diwalis together.
       </p>
       <h2>I love you, my favourite patakha. 🪔❤️</h2>
       <p>
-        Happy Diwali cookie! Forever my favourite celebration. ✨
+        Happy Diwali, cookie! Forever my favourite celebration. ✨
       </p>
-      <p class="small">P.S. You're stuck with me for many many Diwalis. 🤭</p>
+      <p class="small">P.S. You're stuck with me for many, many Diwalis. 🤭</p>
     </div>
   `;
 
@@ -487,7 +518,6 @@ function sayYes() {
 
   grandCelebration();
 
-  // A few extra bursts to make the YES moment feel magical.
   let count = 0;
   const celebrationInterval = setInterval(() => {
     grandCelebration();
@@ -496,7 +526,7 @@ function sayYes() {
   }, 2500);
 }
 
-/* Create actual coloured paper pieces */
+/* Colourful falling paper confetti */
 function launchConfetti() {
   const colours = [
     "#ff4f87", "#ffd166", "#70d6ff", "#c77dff",
@@ -508,31 +538,22 @@ function launchConfetti() {
     const piece = document.createElement("div");
     piece.className = "confetti-piece";
 
-    const width = 6 + Math.random() * 8;
-    const height = 9 + Math.random() * 12;
-
     piece.style.left = Math.random() * 100 + "vw";
-    piece.style.width = width + "px";
-    piece.style.height = height + "px";
+    piece.style.width = (6 + Math.random() * 8) + "px";
+    piece.style.height = (9 + Math.random() * 12) + "px";
     piece.style.backgroundColor =
       colours[Math.floor(Math.random() * colours.length)];
 
-    if (Math.random() > .5) {
-      piece.style.borderRadius = "50%";
-    } else {
-      piece.style.borderRadius = "2px";
-    }
-
+    piece.style.borderRadius = Math.random() > .5 ? "50%" : "2px";
     piece.style.animationDuration = (2.7 + Math.random() * 2.5) + "s";
     piece.style.animationDelay = (Math.random() * .9) + "s";
 
     document.body.appendChild(piece);
-
     piece.addEventListener("animationend", () => piece.remove());
   }
 }
 
-/* Fireworks made of individual moving particles */
+/* Fireworks */
 function firework(x, y) {
   const colours = [
     "#ff4f87", "#ffd166", "#70d6ff",
@@ -551,21 +572,16 @@ function firework(x, y) {
     const angle = (Math.PI * 2 * i) / 32;
     const distance = 45 + Math.random() * 100;
 
-    const dx = Math.cos(angle) * distance;
-    const dy = Math.sin(angle) * distance;
-
-    particle.style.setProperty("--x", dx + "px");
-    particle.style.setProperty("--y", dy + "px");
+    particle.style.setProperty("--x", Math.cos(angle) * distance + "px");
+    particle.style.setProperty("--y", Math.sin(angle) * distance + "px");
 
     document.body.appendChild(particle);
-
     particle.addEventListener("animationend", () => particle.remove());
   }
 }
 
 function grandCelebration() {
   launchConfetti();
-
   firework(20 + Math.random() * 15, 20 + Math.random() * 25);
   firework(65 + Math.random() * 15, 20 + Math.random() * 25);
   firework(40 + Math.random() * 20, 35 + Math.random() * 20);
