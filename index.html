@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,141 +7,256 @@
 <meta name="theme-color" content="#fff0d5">
 <title>For my Thepluuu 🪔</title>
 <style>
-*{box-sizing:border-box}
-body{margin:0;min-height:100vh;padding:20px;display:flex;justify-content:center;align-items:center;background:radial-gradient(circle at top,#fff8e9,#ffe8c5 70%,#fbd8b2);font-family:Arial,sans-serif;overflow:hidden;color:#59351f}
-.glow{position:fixed;width:260px;height:260px;border-radius:50%;background:#ffc45c55;filter:blur(55px);pointer-events:none}
-.glow.one{top:-100px;left:-90px}
-.glow.two{bottom:-120px;right:-90px}
-.card{position:relative;z-index:1;width:min(390px,94vw);min-height:390px;padding:32px 25px 26px;background:rgba(255,255,255,.94);border-radius:25px;text-align:center;box-shadow:0 18px 55px #9c5a2826;display:flex;flex-direction:column;justify-content:center;border:1px solid #fff}
-.progress{display:flex;gap:6px;justify-content:center;margin-bottom:25px}
-.dot{width:24px;height:4px;border-radius:10px;background:#f0dfcc;transition:.3s}
-.dot.active{background:#d88732;width:34px}
-.emoji{font-size:58px;margin-bottom:12px;filter:drop-shadow(0 5px 8px #d88c3730)}
-.eyebrow{color:#c17a36;font-size:10px;letter-spacing:2.5px;text-transform:uppercase;margin-bottom:12px}
-h1{color:#b85d27;font-size:clamp(27px,7vw,34px);line-height:1.2;margin:0 0 14px}
-p{color:#82664f;line-height:1.65;font-size:15px;margin:0 auto 22px;max-width:300px}
-.highlight{color:#c45f43;font-weight:bold}
-.buttons{position:relative;min-height:58px;display:flex;justify-content:center;align-items:center;gap:12px;margin-top:6px}
-button{border:0;border-radius:30px;padding:14px 23px;font-size:15px;cursor:pointer;transition:transform .18s,box-shadow .18s}
-button:active{transform:scale(.96)}
-.next{background:linear-gradient(135deg,#e99b42,#d76b36);color:white;box-shadow:0 7px 18px #d77a3540}
-.back{background:#f6eee5;color:#98765a;padding:12px 17px;font-size:13px}
-#no{background:#e9e3dc;color:#65584d;font-size:12px;position:fixed;z-index:5}
-.tiny{margin-top:20px;font-size:11px;color:#b39a83}
-.screen{display:none;animation:enter .45s ease both}
-.screen.active{display:block}
-@keyframes enter{from{opacity:0;transform:translateY(12px) scale(.98)}to{opacity:1;transform:none}}
-.story-photo{width:min(270px,82%);max-height:245px;object-fit:cover;border:6px solid #fff;border-radius:18px;box-shadow:0 10px 28px rgba(105,61,28,.18);margin:0 auto 15px;display:block}
-.photo-caption{color:#c66a20;font-size:13px;font-style:italic;margin:-5px auto 18px;line-height:1.5}
-.final h1{font-size:clamp(29px,8vw,39px)}
-.confetti{position:fixed;z-index:12;pointer-events:none;font-size:19px;animation:fall 3.5s ease-in forwards}
-@keyframes fall{0%{opacity:0;transform:translate3d(0,-20px,0) rotate(0)}10%{opacity:1}100%{opacity:0;transform:translate3d(var(--drift),110vh,0) rotate(720deg)}}
-.firework-spark{position:fixed;z-index:11;pointer-events:none;font-size:17px;animation:explode 1.35s ease-out forwards}
-@keyframes explode{0%{opacity:0;transform:translate(-50%,-50%) scale(.2)}12%{opacity:1}100%{opacity:0;transform:translate(var(--dx),var(--dy)) scale(.25)}}
-@media(max-width:380px){.card{padding:25px 18px;min-height:370px}}
+  * { box-sizing: border-box; font-family: inherit; }
+  html, body { font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Arial, sans-serif; }
+  button, input, textarea, select { font-family: inherit; }
+  body {
+    margin: 0; min-height: 100vh; padding: 20px;
+    display: flex; justify-content: center; align-items: center;
+    background: radial-gradient(circle at top, #fff8e9, #ffe8c5 70%, #fbd8b2);
+    overflow: hidden; color: #59351f;
+  }
+  .glow {
+    position: fixed; width: 260px; height: 260px; border-radius: 50%;
+    background: #ffc45c55; filter: blur(55px); pointer-events: none;
+  }
+  .glow.one { top: -100px; left: -90px; }
+  .glow.two { bottom: -120px; right: -90px; }
+  .card {
+    position: relative; z-index: 1; width: min(390px, 94vw);
+    min-height: 390px; padding: 32px 25px 26px;
+    background: rgba(255,255,255,.94); border-radius: 25px;
+    text-align: center; box-shadow: 0 18px 55px #9c5a2826;
+    display: flex; flex-direction: column; justify-content: center;
+    border: 1px solid #fff;
+  }
+  .progress { display: flex; gap: 6px; justify-content: center; margin-bottom: 25px; }
+  .dot { width: 24px; height: 4px; border-radius: 10px; background: #f0dfcc; transition: .3s; }
+  .dot.active { background: #d88732; width: 34px; }
+  .emoji { font-size: 58px; margin-bottom: 12px; filter: drop-shadow(0 5px 8px #d88c3730); }
+  .eyebrow { color: #c17a36; font-size: 10px; letter-spacing: 2.5px; text-transform: uppercase; margin-bottom: 12px; }
+  h1 { font-weight: 800; letter-spacing: -1px; color: #b85d27; font-size: clamp(27px, 7vw, 34px); line-height: 1.2; margin: 0 0 14px; }
+  p { color: #82664f; line-height: 1.65; font-size: 15px; margin: 0 auto 22px; max-width: 300px; }
+  .highlight { color: #c45f43; font-weight: bold; }
+  .buttons { position: relative; min-height: 58px; display: flex; justify-content: center; align-items: center; gap: 12px; margin-top: 6px; }
+  button {
+    border: 0; border-radius: 30px; padding: 14px 23px; font-size: 15px;
+    cursor: pointer; font-weight: 700; transition: transform .18s, box-shadow .18s;
+  }
+  button:active { transform: scale(.96); }
+  .next { background: linear-gradient(135deg, #e99b42, #d76b36); color: white; box-shadow: 0 7px 18px #d77a3540; }
+  .next:hover { box-shadow: 0 9px 22px #d77a3560; }
+  .back { background: #f6eee5; color: #98765a; padding: 12px 17px; font-size: 13px; }
+  #no { background: #e9e3dc; color: #65584d; font-size: 12px; position: fixed; z-index: 5; }
+  .tiny { margin-top: 20px; font-size: 11px; color: #b39a83; }
+  .screen { display: none; animation: enter .45s ease both; }
+  .screen.active { display: block; }
+  @keyframes enter { from { opacity: 0; transform: translateY(12px) scale(.98); } to { opacity: 1; transform: none; } }
+
+  .story-photo {
+    width: min(270px, 82%);
+    max-height: 245px;
+    object-fit: cover;
+    border: 6px solid #fff;
+    border-radius: 18px;
+    box-shadow: 0 10px 28px rgba(105, 61, 28, .18);
+    margin: 0 auto 15px;
+    display: block;
+  }
+  .photo-caption {
+    color: #c66a20;
+    font-size: 13px;
+    font-style: italic;
+    margin: -5px auto 18px;
+    line-height: 1.5;
+  }
+
+  .final h1 { font-size: clamp(29px, 8vw, 39px); }
+  .spark {
+    position: fixed; z-index: 10; pointer-events: none; font-size: 22px;
+    animation: fly 1.8s ease-out forwards;
+  }
+  @keyframes fly { 0% { opacity: 0; transform: translateY(10px) scale(.4) rotate(0); } 20% { opacity: 1; } 100% { opacity: 0; transform: translateY(-130px) scale(1.8) rotate(35deg); } }
+  .confetti {
+    position: fixed; z-index: 12; pointer-events: none; font-size: 19px;
+    animation: confetti-fall 3.5s ease-in forwards;
+  }
+  @keyframes confetti-fall {
+    0% { opacity: 0; transform: translate3d(0,-20px,0) rotate(0deg); }
+    10% { opacity: 1; }
+    100% { opacity: 0; transform: translate3d(var(--drift),110vh,0) rotate(720deg); }
+  }
+  .firework-spark {
+    position: fixed; z-index: 11; pointer-events: none; font-size: 17px;
+    animation: firework-explode 1.35s ease-out forwards;
+  }
+  @keyframes firework-explode {
+    0% { opacity: 0; transform: translate(-50%,-50%) scale(.2); }
+    12% { opacity: 1; }
+    100% {
+      opacity: 0;
+      transform: translate(
+        calc(-50% + cos(var(--angle)) * var(--distance)),
+        calc(-50% + sin(var(--angle)) * var(--distance))
+      ) scale(.25);
+    }
+  }
+  @media (max-width: 380px) { .card { padding: 25px 18px; min-height: 370px; } }
 </style>
 </head>
 <body>
 <div class="glow one"></div><div class="glow two"></div>
+
 <main class="card">
-<div class="progress">
-<span class="dot active"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span>
-</div>
+  <div class="progress" id="progress">
+    <span class="dot active"></span><span class="dot"></span><span class="dot"></span>
+    <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+  </div>
 
-<section class="screen active">
-<div class="emoji">🪔</div>
-<div class="eyebrow">A tiny Diwali investigation</div>
-<h1>Helloooo, my Thepluuu! 💛</h1>
-<p>Quick question… what is my favourite <span class="highlight">patakha</span> up to these days?</p>
-<div class="buttons"><button class="next" onclick="go(1)">Let's find out 👀</button></div>
-<div class="tiny">A very important investigation. Please cooperate.</div>
-</section>
+  <section class="screen active">
+    <div class="emoji">🪔</div>
+    <div class="eyebrow">A tiny Diwali investigation</div>
+    <h1>Helloooo, my Thepluuu! 💛</h1>
+    <p>Quick question… what is my favourite <span class="highlight">patakha</span> up to these days?</p>
+    <div class="buttons"><button class="next" onclick="go(1)">Let's find out 👀</button></div>
+    <div class="tiny">A very important investigation. Please cooperate.</div>
+  </section>
 
-<section class="screen">
-<div class="emoji">👀</div>
-<div class="eyebrow">Case file no. 01</div>
-<h1>OHHH, I see…</h1>
-<p>She's busy being <span class="highlight">sexy, pretty and ridiculously gorgeous</span>, as usual. Basically causing more fireworks than Diwali itself. 😮‍💨</p>
-<img class="story-photo" src="yukti-01.jpeg" alt="Thepluuu">
-<div class="photo-caption">Excuse me, who allowed you to look THIS gorgeous? 😮‍💨</div>
-<div class="buttons"><button class="back" onclick="go(0)">← Back</button><button class="next" onclick="go(2)">And then? 😏</button></div>
-</section>
+  <section class="screen">
+    <div class="emoji">👀</div>
+    <div class="eyebrow">Case file no. 01</div>
+    <h1>OHHH, I see…</h1>
+    <p>She's busy being <span class="highlight">sexy, pretty and ridiculously gorgeous</span>, as usual. Basically causing more fireworks than Diwali itself. 😮‍💨</p>
+    <img class="story-photo" src="yukti-01.jpeg" alt="Thepluuu dressed up for a celebration">
+    <div class="photo-caption">Excuse me, who allowed you to look THIS gorgeous? 😮‍💨</div>
+    <div class="buttons"><button class="back" onclick="go(0)">← Back</button><button class="next" onclick="go(2)">And then? 😏</button></div>
+  </section>
 
-<section class="screen">
-<div class="emoji">🥺</div>
-<div class="eyebrow">Plot twist</div>
-<h1>Meanwhile, someone…</h1>
-<p>…is sitting here missing his baby girl a little extra today. <span class="highlight">I miss you, Thepluuu.</span> Your hugs, your voice, your face — the whole package. ❤️</p>
-<img class="story-photo" src="yukti-02.jpeg" alt="Thepluuu smiling">
-<div class="photo-caption">This smile. Yes, this exact one. I miss it. 🥺</div>
-<div class="buttons"><button class="back" onclick="go(1)">← Back</button><button class="next" onclick="go(3)">A little more… 💌</button></div>
-</section>
+  <section class="screen">
+    <div class="emoji">🥺</div>
+    <div class="eyebrow">Plot twist</div>
+    <h1>Meanwhile, someone…</h1>
+    <p>…is sitting here missing his baby girl a little extra today. <span class="highlight">I miss you, Thepluuu.</span> Your hugs, your voice, your face — the whole package. ❤️</p>
+    <img class="story-photo" src="yukti-02.jpeg" alt="Thepluuu smiling">
+    <div class="photo-caption">This smile. Yes, this exact one. I miss it. 🥺</div>
+    <div class="buttons"><button class="back" onclick="go(1)">← Back</button><button class="next" onclick="go(3)">A little more… 💌</button></div>
+  </section>
 
-<section class="screen">
-<div class="emoji">💗</div>
-<div class="eyebrow">A confession from your human</div>
-<h1>You know what I wish?</h1>
-<p>That I could be right there, steal a long hug, annoy you with kisses and watch your face light up brighter than all the diyas around us.</p>
-<img class="story-photo" src="yukti-03.jpeg" alt="A favourite memory">
-<div class="photo-caption">My favourite view, in every outfit and every mood. ❤️</div>
-<div class="buttons"><button class="back" onclick="go(2)">← Back</button><button class="next" onclick="go(4)">One last thing… ✨</button></div>
-</section>
+  <section class="screen">
+    <div class="emoji">💗</div>
+    <div class="eyebrow">A confession from your human</div>
+    <h1>You know what I wish?</h1>
+    <p>That I could be right there, steal a long hug, annoy you with kisses and watch your face light up brighter than all the diyas around us.</p>
+    <img class="story-photo" src="yukti-03.jpeg" alt="A favourite dressed-up memory">
+    <div class="photo-caption">My favourite view, in every outfit and every mood. ❤️</div>
+    <div class="buttons"><button class="back" onclick="go(2)">← Back</button><button class="next" onclick="go(4)">One last thing… ✨</button></div>
+  </section>
 
-<section class="screen">
-<div class="emoji">🌙</div>
-<div class="eyebrow">My favourite kind of light</div>
-<h1>Happy Diwali, my love.</h1>
-<p>May your life be full of laughter, good health, big dreams coming true and a thousand reasons to smile. And may I always get a front-row seat to your happiness. 🥹</p>
-<img class="story-photo" src="yukti-04.jpeg" alt="A special evening">
-<div class="photo-caption">A little glimpse of the memories I want a lifetime more of. ✨</div>
-<div class="buttons"><button class="back" onclick="go(3)">← Back</button><button class="next" onclick="go(5)">Now, tell me… 🪔</button></div>
-</section>
+  <section class="screen">
+    <div class="emoji">🌙</div>
+    <div class="eyebrow">My favourite kind of light</div>
+    <h1>Happy Diwali, my love.</h1>
+    <p>May your life be full of laughter, good health, big dreams coming true and a thousand reasons to smile. And may I always get a front-row seat to your happiness. 🥹</p>
+    <img class="story-photo" src="yukti-04.jpeg" alt="A special evening together">
+    <div class="photo-caption">A little glimpse of the memories I want a lifetime more of. ✨</div>
+    <div class="buttons"><button class="back" onclick="go(3)">← Back</button><button class="next" onclick="go(5)">Now, tell me… 🪔</button></div>
+  </section>
 
-<section class="screen final">
-<div class="emoji">🎆🪔🎆</div>
-<div class="eyebrow">The most important question</div>
-<h1>Thepluuu,<br>will you celebrate this Diwali with me? 💖</h1>
-<p>One festival. Two idiots in love. Unlimited pyaar, mithai and memories. Deal?</p>
-<img class="story-photo" src="yukti-07.jpeg" alt="Our favourite picture">
-<div class="photo-caption">My favourite person. My favourite kind of celebration. 💞</div>
-<div class="buttons"><button class="next" id="yes">YESSSS 💖</button><button id="no">no 🙄</button></div>
-<div class="tiny">Choose wisely, patakha. There is only one correct answer.</div>
-</section>
+  <section class="screen final">
+    <div class="emoji">🎆🪔🎆</div>
+    <div class="eyebrow">The most important question</div>
+    <h1>Thepluuu,<br>will you celebrate this Diwali with me? 💖</h1>
+    <p>One festival. Two idiots in love. Unlimited pyaar, mithai and memories. Deal?</p>
+    <img class="story-photo" src="yukti-07.jpeg" alt="A favourite picture together">
+    <div class="photo-caption">My favourite person. My favourite kind of celebration. 💞</div>
+    <div class="buttons">
+      <button class="next" id="yes">YESSSS 💖</button>
+      <button id="no">no 🙄</button>
+    </div>
+    <div class="tiny">Choose wisely, patakha. There is only one correct answer.</div>
+  </section>
 </main>
 
 <script>
-let current=0;
-const screens=document.querySelectorAll(".screen");
-const dots=document.querySelectorAll(".dot");
-function go(n){screens[current].classList.remove("active");current=n;screens[current].classList.add("active");dots.forEach((d,i)=>d.classList.toggle("active",i===current))}
-const noBtn=document.getElementById("no");
-function moveNo(){const p=12;const mx=Math.max(p,innerWidth-noBtn.offsetWidth-p);const my=Math.max(p,innerHeight-noBtn.offsetHeight-p);noBtn.style.left=(p+Math.random()*(mx-p))+"px";noBtn.style.top=(p+Math.random()*(my-p))+"px"}
-noBtn.addEventListener("touchstart",e=>{e.preventDefault();moveNo()},{passive:false});
-noBtn.addEventListener("mouseover",moveNo);
-noBtn.addEventListener("click",moveNo);
+  let current = 0;
+  const screens = document.querySelectorAll(".screen");
+  const dots = document.querySelectorAll(".dot");
+  function go(n) {
+    screens[current].classList.remove("active");
+    current = n;
+    screens[current].classList.add("active");
+    dots.forEach((dot, i) => dot.classList.toggle("active", i === current));
+  }
 
-function confettiBurst(){
-const pieces=["💛","💖","🌸","✨","🎊","🪔"];
-for(let i=0;i<90;i++){const s=document.createElement("span");s.className="confetti";s.textContent=pieces[Math.floor(Math.random()*pieces.length)];s.style.left=Math.random()*100+"vw";s.style.top="-30px";s.style.setProperty("--drift",(Math.random()*240-120)+"px");s.style.animationDuration=(2.4+Math.random()*2.2)+"s";s.style.animationDelay=Math.random()+ "s";document.body.appendChild(s);setTimeout(()=>s.remove(),5600)}
-}
-function fireworkBurst(x,y){
-const colors=["#ffb52e","#ff6b6b","#f06cc5","#65c9ff","#9bde70","#fff0a8"];
-for(let i=0;i<34;i++){const s=document.createElement("span");s.className="firework-spark";s.textContent="✦";s.style.left=x+"px";s.style.top=y+"px";s.style.color=colors[i%colors.length];const a=i/34*Math.PI*2;const d=65+Math.random()*95;s.style.setProperty("--dx",(Math.cos(a)*d)+"px");s.style.setProperty("--dy",(Math.sin(a)*d)+"px");document.body.appendChild(s);setTimeout(()=>s.remove(),1500)}
-}
-function celebrate(){confettiBurst();fireworkBurst(innerWidth*.22,innerHeight*.25);setTimeout(()=>fireworkBurst(innerWidth*.76,innerHeight*.22),250);setTimeout(()=>fireworkBurst(innerWidth*.5,innerHeight*.16),520);setTimeout(()=>fireworkBurst(innerWidth*.32,innerHeight*.48),850);setTimeout(()=>fireworkBurst(innerWidth*.7,innerHeight*.5),1150)}
-document.getElementById("yes").addEventListener("click",()=>{
-document.querySelector(".card").innerHTML=`
-<div class="emoji">🥹💖🪔</div>
-<div class="eyebrow">I knew you'd say yes</div>
-<h1>YASSSSS, MY THEPLUUU!!!</h1>
-<p>Happy Diwali, baby girl. Here's to a little more light, a lot more laughter and countless beautiful festivals together.</p>
-<p class="highlight">I love you, my favourite patakha. ❤️</p>
-<div class="emoji">🎆✨🌸✨🎆</div>
-<div class="tiny">Made with all my pyaar, by Ashish.</div>`;
-celebrate();
-const loop=setInterval(celebrate,4200);
-setTimeout(()=>clearInterval(loop),21000);
-});
+  const noBtn = document.getElementById("no");
+  function moveNo() {
+    const pad = 12;
+    const maxX = Math.max(pad, innerWidth - noBtn.offsetWidth - pad);
+    const maxY = Math.max(pad, innerHeight - noBtn.offsetHeight - pad);
+    noBtn.style.left = (pad + Math.random() * (maxX - pad)) + "px";
+    noBtn.style.top = (pad + Math.random() * (maxY - pad)) + "px";
+  }
+  noBtn.addEventListener("touchstart", e => { e.preventDefault(); moveNo(); }, {passive:false});
+  noBtn.addEventListener("mouseover", moveNo);
+  noBtn.addEventListener("click", moveNo);
+
+  function confettiBurst() {
+    const pieces = ["💛", "💖", "🌸", "✨", "🎊", "🪔"];
+    for (let i = 0; i < 90; i++) {
+      const piece = document.createElement("span");
+      piece.className = "confetti";
+      piece.textContent = pieces[Math.floor(Math.random() * pieces.length)];
+      piece.style.left = Math.random() * 100 + "vw";
+      piece.style.top = "-30px";
+      piece.style.setProperty("--drift", (Math.random() * 240 - 120) + "px");
+      piece.style.animationDuration = (2.4 + Math.random() * 2.2) + "s";
+      piece.style.animationDelay = (Math.random() * .8) + "s";
+      document.body.appendChild(piece);
+      setTimeout(() => piece.remove(), 5600);
+    }
+  }
+
+  function fireworkBurst(x, y) {
+    const colors = ["#ffb52e", "#ff6b6b", "#f06cc5", "#65c9ff", "#9bde70", "#fff0a8"];
+    const symbols = ["✦", "✧", "•", "✨"];
+    const count = 34;
+    for (let i = 0; i < count; i++) {
+      const spark = document.createElement("span");
+      spark.className = "firework-spark";
+      spark.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+      spark.style.left = x + "px";
+      spark.style.top = y + "px";
+      spark.style.color = colors[i % colors.length];
+      spark.style.setProperty("--angle", (i / count * 360) + "deg");
+      spark.style.setProperty("--distance", (65 + Math.random() * 95) + "px");
+      document.body.appendChild(spark);
+      setTimeout(() => spark.remove(), 1500);
+    }
+  }
+
+  function grandCelebration() {
+    confettiBurst();
+    fireworkBurst(innerWidth * .22, innerHeight * .25);
+    setTimeout(() => fireworkBurst(innerWidth * .76, innerHeight * .22), 250);
+    setTimeout(() => fireworkBurst(innerWidth * .5, innerHeight * .16), 520);
+    setTimeout(() => fireworkBurst(innerWidth * .32, innerHeight * .48), 850);
+    setTimeout(() => fireworkBurst(innerWidth * .7, innerHeight * .5), 1150);
+  }
+
+  document.getElementById("yes").addEventListener("click", () => {
+    document.querySelector(".card").innerHTML = `
+      <div class="emoji">🥹💖🪔</div>
+      <div class="eyebrow">I knew you'd say yes</div>
+      <h1>YASSSSS, MY THEPLUUU!!!</h1>
+      <p>Happy Diwali, baby girl. Here's to a little more light, a lot more laughter and countless beautiful festivals together.</p>
+      <p class="highlight">I love you, my favourite patakha. ❤️</p>
+      <div class="emoji">🎆✨🌸✨🎆</div>
+      <div class="tiny">Made with all my pyaar, by Ashish.</div>
+    `;
+    grandCelebration();
+    const celebrationLoop = setInterval(grandCelebration, 4200);
+    setTimeout(() => clearInterval(celebrationLoop), 21000);
+  });
 </script>
 </body>
 </html>
