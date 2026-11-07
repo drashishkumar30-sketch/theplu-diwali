@@ -1,6 +1,4 @@
 
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -108,8 +106,7 @@ p {
   font-weight: 800;
 }
 
-/* FULL PHOTOGRAPHS - NO CROPPING */
-
+/* Full photographs without cropping */
 .story-photo {
   width: min(340px, 90%);
   height: auto;
@@ -182,8 +179,7 @@ button:active {
   line-height: 1.5;
 }
 
-/* TEDDY MASCOT */
-
+/* Teddy mascot */
 .mascot {
   width: min(230px, 70%);
   height: auto;
@@ -206,45 +202,50 @@ button:active {
   width: min(215px, 65%);
 }
 
-/* CONFETTI */
-
+/* Confetti: fixed above all website content */
 .confetti {
   position: fixed;
-  top: -30px;
-  z-index: 20;
+  top: -35px;
+  z-index: 99999;
   pointer-events: none;
-  animation: fall 4s ease-in forwards;
-  font-size: 22px;
+  font-size: 25px;
+  line-height: 1;
+  animation: confettiFall 4s linear forwards;
+  will-change: transform, opacity;
 }
 
-@keyframes fall {
+@keyframes confettiFall {
   0% {
-    transform: translateY(0) rotate(0);
+    transform: translate3d(0, 0, 0) rotate(0deg);
     opacity: 1;
   }
   100% {
-    transform: translateY(110vh) rotate(700deg);
+    transform: translate3d(var(--drift), 110vh, 0) rotate(720deg);
     opacity: 0;
   }
 }
 
-/* FIREWORKS */
-
+/* Firework sparks */
 .firework {
   position: fixed;
-  z-index: 19;
+  z-index: 100000;
   pointer-events: none;
-  font-size: 20px;
-  animation: explode 1.5s ease-out forwards;
+  font-size: 22px;
+  line-height: 1;
+  animation: fireworkBurst 1.5s ease-out forwards;
+  will-change: transform, opacity;
 }
 
-@keyframes explode {
+@keyframes fireworkBurst {
   0% {
-    transform: translate(0,0) scale(.2);
+    transform: translate(-50%, -50%) scale(.2);
     opacity: 1;
   }
   100% {
-    transform: translate(var(--x),var(--y)) scale(1.4);
+    transform: translate(
+      calc(-50% + var(--x)),
+      calc(-50% + var(--y))
+    ) scale(1.5);
     opacity: 0;
   }
 }
@@ -271,12 +272,11 @@ button:active {
 <!-- TEDDY MASCOT -->
 <template id="teddy">
 <svg class="mascot" viewBox="0 0 240 270"
-     xmlns="http://www.w3.org/2000/svg">
+xmlns="http://www.w3.org/2000/svg">
 
   <!-- Pink heart -->
   <path d="M120 55 C85 15 30 45 65 94 L120 145
-           L175 94 C210 45 155 15 120 55Z"
-        fill="#ff4380"/>
+  L175 94 C210 45 155 15 120 55Z" fill="#ff4380"/>
 
   <!-- Ears -->
   <circle cx="62" cy="111" r="35" fill="#d8a876"/>
@@ -294,8 +294,8 @@ button:active {
 
   <!-- Smile -->
   <path d="M101 177 Q120 194 139 177"
-        fill="none" stroke="#684226"
-        stroke-width="5" stroke-linecap="round"/>
+  fill="none" stroke="#684226" stroke-width="5"
+  stroke-linecap="round"/>
 
   <!-- Paws -->
   <ellipse cx="76" cy="214" rx="26" ry="17" fill="#d8a876"/>
@@ -303,77 +303,49 @@ button:active {
 
   <!-- Diya -->
   <path d="M91 205 Q120 231 149 205
-           Q145 231 120 235 Q95 231 91 205Z"
-        fill="#e78b35"/>
+  Q145 231 120 235 Q95 231 91 205Z"
+  fill="#e78b35"/>
 
   <path d="M98 210 Q120 221 142 210"
-        fill="none" stroke="#ffd36d" stroke-width="3"/>
+  fill="none" stroke="#ffd36d" stroke-width="3"/>
 
   <!-- Flame -->
   <path d="M120 201 C99 181 122 172 120 158
-           C145 181 135 194 120 201Z"
-        fill="#ffb52e"/>
+  C145 181 135 194 120 201Z" fill="#ffb52e"/>
 
   <path d="M120 197 C111 187 122 181 122 175
-           C133 187 129 194 120 197Z"
-        fill="#fff3ad"/>
+  C133 187 129 194 120 197Z" fill="#fff3ad"/>
 
   <!-- Sparkles -->
   <path d="M36 177 L40 187 L50 191 L40 195
-           L36 205 L32 195 L22 191 L32 187Z"
-        fill="#ffca56"/>
+  L36 205 L32 195 L22 191 L32 187Z"
+  fill="#ffca56"/>
 
   <path d="M203 169 L207 178 L216 182 L207 186
-           L203 195 L199 186 L190 182 L199 178Z"
-        fill="#ffca56"/>
+  L203 195 L199 186 L190 182 L199 178Z"
+  fill="#ffca56"/>
 </svg>
 </template>
 
 <!-- SCREEN 1 -->
 <section class="screen active">
   <div class="mascot-slot"></div>
-
   <div class="eyebrow">A little Diwali surprise</div>
-
   <h1>Heyyy, my Thepluuu! 🪔</h1>
-
-  <p>
-    I've got a tiny surprise for my favourite human.
-    Ready for a little journey? ❤️
-  </p>
-
+  <p>I've got a tiny surprise for my favourite human. Ready for a little journey? ❤️</p>
   <div class="buttons">
-    <button class="next" onclick="go(1)">
-      Let's begin ✨
-    </button>
+    <button class="next" onclick="go(1)">Let's begin ✨</button>
   </div>
-
-  <div class="tiny">
-    Made with lots of pyaar, just for you.
-  </div>
+  <div class="tiny">Made with lots of pyaar, just for you.</div>
 </section>
 
 <!-- SCREEN 2 -->
 <section class="screen">
-
   <div class="eyebrow">Exhibit no. 01</div>
-
   <h1>How are you even real? 😮‍💨</h1>
-
-  <p>
-    How does someone manage to look this breathtaking
-    without even trying? You're honestly my favourite
-    kind of distraction.
-  </p>
-
+  <p>How does someone manage to look this breathtaking without even trying? You're honestly my favourite kind of distraction.</p>
   <img class="story-photo" src="yukti-01.jpeg" alt="Thepluuu">
-
-  <div class="photo-caption">
-    How does someone manage to look this breathtaking
-    without even trying? You're honestly my favourite
-    kind of distraction. 😮‍💨
-  </div>
-
+  <div class="photo-caption">How does someone manage to look this breathtaking without even trying? You're honestly my favourite kind of distraction. 😮‍💨</div>
   <div class="buttons">
     <button class="back" onclick="go(0)">← Back</button>
     <button class="next" onclick="go(2)">Next, baby 💗</button>
@@ -382,24 +354,11 @@ button:active {
 
 <!-- SCREEN 3 -->
 <section class="screen">
-
   <div class="eyebrow">Exhibit no. 02</div>
-
   <h1>That smile of yours… 🥹</h1>
-
-  <p>
-    Some things deserve to be celebrated every single day.
-    This smile is definitely one of them.
-  </p>
-
+  <p>Some things deserve to be celebrated every single day. This smile is definitely one of them.</p>
   <img class="story-photo" src="yukti-02.jpeg" alt="Her beautiful smile">
-
-  <div class="photo-caption">
-    This smile deserves its own festival.
-    And I hope I get to be one of the reasons behind it,
-    always. 🥹
-  </div>
-
+  <div class="photo-caption">This smile deserves its own festival. And I hope I get to be one of the reasons behind it, always. 🥹</div>
   <div class="buttons">
     <button class="back" onclick="go(1)">← Back</button>
     <button class="next" onclick="go(3)">Keep going 💌</button>
@@ -408,23 +367,11 @@ button:active {
 
 <!-- SCREEN 4 -->
 <section class="screen">
-
   <div class="eyebrow">A little us moment</div>
-
   <h1>My favourite feeling. ❤️</h1>
-
-  <p>
-    If I could freeze one feeling in time,
-    it would be the feeling of being right next to you.
-  </p>
-
+  <p>If I could freeze one feeling in time, it would be the feeling of being right next to you.</p>
   <img class="story-photo" src="yukti-03.jpeg" alt="A favourite memory">
-
-  <div class="photo-caption">
-    If I could freeze one feeling in time,
-    it would be the feeling of being right next to you. ❤️
-  </div>
-
+  <div class="photo-caption">If I could freeze one feeling in time, it would be the feeling of being right next to you. ❤️</div>
   <div class="buttons">
     <button class="back" onclick="go(2)">← Back</button>
     <button class="next" onclick="go(4)">Next, cookie ✨</button>
@@ -433,23 +380,11 @@ button:active {
 
 <!-- SCREEN 5 -->
 <section class="screen">
-
   <div class="eyebrow">The festive edition</div>
-
   <h1>Who's stealing the show? 🪔</h1>
-
-  <p>
-    The diyas can compete for brightness all they want.
-    We both know who's stealing the show.
-  </p>
-
+  <p>The diyas can compete for brightness all they want. We both know who's stealing the show.</p>
   <img class="story-photo" src="yukti-04.jpeg" alt="Her festive look">
-
-  <div class="photo-caption">
-    The diyas can compete for brightness all they want.
-    We both know who's stealing the show. 🪔✨
-  </div>
-
+  <div class="photo-caption">The diyas can compete for brightness all they want. We both know who's stealing the show. 🪔✨</div>
   <div class="buttons">
     <button class="back" onclick="go(3)">← Back</button>
     <button class="next" onclick="go(5)">A little warning… 😏</button>
@@ -458,22 +393,11 @@ button:active {
 
 <!-- SCREEN 6 -->
 <section class="screen">
-
   <div class="eyebrow">A slight change of mood</div>
-
   <h1>Let's keep things auspicious… 😈</h1>
-
-  <img class="story-photo" src="yukti-05.jpeg"
-       alt="My favourite troublemaker">
-
-  <div class="photo-caption">
-    Those legs are making me forget all about the
-    festivities… I'd love to lift them tonight, but
-    let's keep things auspicious for now. 😏🪔
-  </div>
-
+  <img class="story-photo" src="yukti-05.jpeg" alt="My favourite troublemaker">
+  <div class="photo-caption">Those legs are making me forget all about the festivities… I'd love to lift them tonight, but let's keep things auspicious for now. 😏🪔</div>
   <p>Okay, I'll behave. For now. 🤭</p>
-
   <div class="buttons">
     <button class="back" onclick="go(4)">← Back</button>
     <button class="next" onclick="go(6)">One more thing… 🌶️</button>
@@ -482,21 +406,11 @@ button:active {
 
 <!-- SCREEN 7 -->
 <section class="screen">
-
   <div class="eyebrow">The troublemaker herself</div>
-
   <h1>Pretty face. Dangerous charm. 🤭</h1>
-
   <img class="story-photo" src="yukti-06.jpeg" alt="Thepluuu">
-
-  <div class="photo-caption">
-    Pretty face, dangerous charm, absolutely zero
-    intention of letting me behave.
-    What a combination, Thepluuu. 🤭
-  </div>
-
+  <div class="photo-caption">Pretty face, dangerous charm, absolutely zero intention of letting me behave. What a combination, Thepluuu. 🤭</div>
   <p>And somehow, I wouldn't have it any other way. ❤️</p>
-
   <div class="buttons">
     <button class="back" onclick="go(5)">← Back</button>
     <button class="next" onclick="go(7)">The final question… 🪔</button>
@@ -505,46 +419,19 @@ button:active {
 
 <!-- SCREEN 8 -->
 <section class="screen final">
-
   <div class="mascot-slot"></div>
-
   <div class="eyebrow">My favourite kind of light</div>
-
   <h1>Happy Diwali, my love. ❤️</h1>
-
-  <p>
-    May your life be full of laughter, good health,
-    big dreams coming true and a thousand reasons to smile.
-    And may I always get a front-row seat to your happiness. 🥹
-  </p>
-
-  <img class="story-photo" src="yukti-07.jpeg"
-       alt="My favourite person">
-
-  <div class="photo-caption">
-    My favourite person, my favourite festival,
-    and hopefully many more Diwalis together.
-    Here's to us. 💖
-  </div>
-
+  <p>May your life be full of laughter, good health, big dreams coming true and a thousand reasons to smile. And may I always get a front-row seat to your happiness. 🥹</p>
+  <img class="story-photo" src="yukti-07.jpeg" alt="My favourite person">
+  <div class="photo-caption">My favourite person, my favourite festival, and hopefully many more Diwalis together. Here's to us. 💖</div>
   <h1>Will you celebrate Diwali with me, Thepluuu? 🪔</h1>
-
-  <p>
-    One festival. Two idiots in love.
-    Unlimited pyaar, mithai and memories. Deal?
-  </p>
-
+  <p>One festival. Two idiots in love. Unlimited pyaar, mithai and memories. Deal?</p>
   <div class="buttons">
-    <button class="next" id="yes">
-      YESSSS, BABY! 💖
-    </button>
-
+    <button class="next" id="yes">YESSSS, BABY! 💖</button>
     <button id="no">No 🙄</button>
   </div>
-
-  <div class="tiny">
-    Choose wisely, patakha. There's only one correct answer. 😌
-  </div>
+  <div class="tiny">Choose wisely, patakha. There's only one correct answer. 😌</div>
 </section>
 
 </main>
@@ -555,7 +442,6 @@ button:active {
 
 const screens = [...document.querySelectorAll(".screen")];
 const progress = document.getElementById("progress");
-
 let current = 0;
 
 screens.forEach((screen, index) => {
@@ -566,7 +452,7 @@ screens.forEach((screen, index) => {
 
 const dots = [...progress.children];
 
-/* ADD TEDDY TO OPENING AND FINAL SCREEN */
+/* ADD TEDDY */
 
 function addTeddy() {
   document.querySelectorAll(".mascot-slot").forEach(slot => {
@@ -580,19 +466,14 @@ addTeddy();
 
 function go(index) {
   screens[current].classList.remove("active");
-
   current = index;
-
   screens[current].classList.add("active");
 
   dots.forEach((dot, i) => {
     dot.classList.toggle("active", i === current);
   });
 
-  window.scrollTo({
-    top: 0,
-    behavior: "smooth"
-  });
+  window.scrollTo({top: 0, behavior: "smooth"});
 }
 
 /* NO BUTTON RUNS AWAY */
@@ -613,10 +494,8 @@ function moveNo() {
   );
 
   noButton.style.position = "fixed";
-
   noButton.style.left =
     (padding + Math.random() * (maxX - padding)) + "px";
-
   noButton.style.top =
     (padding + Math.random() * (maxY - padding)) + "px";
 }
@@ -632,65 +511,57 @@ noButton.addEventListener("click", moveNo);
 /* CONFETTI */
 
 function launchConfetti() {
-
   const pieces = [
     "💖", "✨", "🌸", "🎊",
     "🪔", "💛", "🎆", "❤️"
   ];
 
-  for (let i = 0; i < 140; i++) {
-
+  for (let i = 0; i < 180; i++) {
     const item = document.createElement("span");
 
     item.className = "confetti";
-
     item.textContent =
       pieces[Math.floor(Math.random() * pieces.length)];
 
     item.style.left = Math.random() * 100 + "vw";
+    item.style.setProperty(
+      "--drift",
+      (Math.random() * 300 - 150) + "px"
+    );
 
-    item.style.animationDelay =
-      Math.random() * 1.5 + "s";
-
+    item.style.animationDelay = Math.random() * 1.5 + "s";
     item.style.animationDuration =
-      (3 + Math.random() * 2.5) + "s";
+      (3 + Math.random() * 2) + "s";
 
     document.body.appendChild(item);
 
-    setTimeout(() => item.remove(), 6500);
+    setTimeout(() => item.remove(), 7000);
   }
 }
 
 /* FIREWORKS */
 
 function firework(x, y) {
-
   const symbols = ["✦", "✧", "✨", "•"];
 
   const colors = [
-    "#ff4380",
-    "#ffbd45",
-    "#e8753c",
-    "#b98aff",
-    "#62c9e8"
+    "#ff4380", "#ffbd45", "#e8753c",
+    "#b98aff", "#62c9e8", "#ffdf65"
   ];
 
-  for (let i = 0; i < 30; i++) {
-
+  for (let i = 0; i < 34; i++) {
     const spark = document.createElement("span");
 
     spark.className = "firework";
-
     spark.textContent =
       symbols[Math.floor(Math.random() * symbols.length)];
 
     spark.style.left = x + "px";
     spark.style.top = y + "px";
-
     spark.style.color = colors[i % colors.length];
 
     const angle = Math.random() * Math.PI * 2;
-    const distance = 50 + Math.random() * 110;
+    const distance = 60 + Math.random() * 110;
 
     spark.style.setProperty(
       "--x",
@@ -704,14 +575,13 @@ function firework(x, y) {
 
     document.body.appendChild(spark);
 
-    setTimeout(() => spark.remove(), 1600);
+    setTimeout(() => spark.remove(), 1700);
   }
 }
 
 /* GRAND DIWALI CELEBRATION */
 
 function grandCelebration() {
-
   launchConfetti();
 
   const positions = [
@@ -724,40 +594,30 @@ function grandCelebration() {
   ];
 
   positions.forEach(([x, y], index) => {
-
     setTimeout(() => {
-
       firework(
         window.innerWidth * x,
         window.innerHeight * y
       );
-
     }, index * 350);
-
   });
 }
 
 /* YES BUTTON */
 
 document.getElementById("yes").addEventListener("click", () => {
-
   const card = document.getElementById("mainCard");
 
   card.innerHTML = `
     <div class="mascot-slot"></div>
-
     <div class="eyebrow">The best answer ever</div>
-
     <h1>YASSSSS, MY THEPLUUU!!! 💖</h1>
-
     <p>
       I knew you'd say yes, baby girl!
       Here's to more laughter, more hugs,
       more kisses and countless beautiful Diwalis together.
     </p>
-
     <h1>I love you, my favourite patakha. 🪔❤️</h1>
-
     <p>
       Happy Diwali, cookie!
       Forever my favourite celebration. ✨
@@ -766,26 +626,20 @@ document.getElementById("yes").addEventListener("click", () => {
 
   addTeddy();
 
-  /* First celebration immediately */
-
+  /* Start the celebration immediately */
   grandCelebration();
 
-  /* Repeat the fireworks and confetti */
-
+  /* Repeat the celebration five more times */
   let count = 0;
 
   const celebration = setInterval(() => {
-
     grandCelebration();
-
     count++;
 
     if (count >= 5) {
       clearInterval(celebration);
     }
-
-  }, 4000);
-
+  }, 3500);
 });
 
 </script>
