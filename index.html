@@ -7,7 +7,7 @@
 <meta name="theme-color" content="#fff4ed">
 <title>For My Thepluuu 🪔</title>
 
-<!-- Rounded Poppins typography -->
+<!-- Poppins font -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -136,11 +136,6 @@ button {
   box-shadow: 0 7px 18px rgba(223,92,131,.23);
 }
 
-.secondary {
-  color: #d66c8a;
-  background: #fff0f4;
-}
-
 .buttons {
   display: flex;
   justify-content: center;
@@ -184,10 +179,6 @@ button {
   }
 }
 
-.hidden {
-  display: none !important;
-}
-
 /* Floating music button */
 #musicButton {
   position: fixed;
@@ -208,7 +199,7 @@ button {
   display: block;
 }
 
-/* Colourful falling paper confetti */
+/* Falling paper confetti */
 .confetti-piece {
   position: fixed;
   top: -24px;
@@ -225,16 +216,14 @@ button {
     transform: translate3d(0,0,0) rotate(0deg);
     opacity: 1;
   }
-  85% {
-    opacity: 1;
-  }
+  85% { opacity: 1; }
   100% {
     transform: translate3d(0,110vh,0) rotate(760deg);
     opacity: 0;
   }
 }
 
-/* Fireworks */
+/* Firework particles */
 .firework-particle {
   position: fixed;
   width: 9px;
@@ -256,23 +245,82 @@ button {
   }
 }
 
+/* Diya lighting */
+.diya-art {
+  width: 240px;
+  max-width: 85%;
+  display: block;
+  margin: 18px auto;
+  overflow: visible;
+}
+
+.diya-flame {
+  opacity: 0;
+  transform-origin: 110px 110px;
+}
+
+.diya-flame.lit {
+  opacity: 1;
+  animation: flameFlicker .8s ease-in-out infinite alternate;
+}
+
+.diya-glow {
+  opacity: 0;
+  transition: opacity 1.2s ease;
+}
+
+.diya-glow.lit {
+  opacity: 1;
+}
+
+@keyframes flameFlicker {
+  from {
+    transform: scale(.94) rotate(-3deg);
+    filter: drop-shadow(0 0 8px #ffb52e);
+  }
+  to {
+    transform: scale(1.08) rotate(3deg);
+    filter: drop-shadow(0 0 19px #ffb52e);
+  }
+}
+
+.diya-sparkles {
+  opacity: 0;
+}
+
+.diya-sparkles.lit {
+  animation: sparkleAppear 1.5s ease forwards;
+}
+
+@keyframes sparkleAppear {
+  0% {
+    opacity: 0;
+    transform: scale(.2);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+  100% {
+    opacity: .9;
+    transform: scale(1);
+  }
+}
+
+.diya-caption {
+  color: #d66c8a;
+  font-weight: 600;
+}
+
 @media (max-width: 380px) {
   .card {
     padding: 25px 16px;
     min-height: 540px;
   }
 
-  h1 {
-    font-size: 26px;
-  }
-
-  h2 {
-    font-size: 22px;
-  }
-
-  p {
-    font-size: 15px;
-  }
+  h1 { font-size: 26px; }
+  h2 { font-size: 22px; }
+  p { font-size: 15px; }
 }
 </style>
 </head>
@@ -286,7 +334,7 @@ button {
   <div id="content"></div>
 </main>
 
-<!-- Background music -->
+<!-- Music -->
 <audio id="backgroundMusic"
        src="haan-tu-hai.mp3.mp3"
        preload="auto"
@@ -297,7 +345,7 @@ button {
   🎵 Music: ON
 </button>
 
-<!-- Teddy holding a glowing diya -->
+<!-- Teddy holding diya -->
 <template id="teddy">
 <svg class="mascot" viewBox="0 0 220 230"
      xmlns="http://www.w3.org/2000/svg"
@@ -309,7 +357,6 @@ button {
       <stop offset="0%" stop-color="#fff3a3"/>
       <stop offset="100%" stop-color="#ffb84d" stop-opacity="0"/>
     </radialGradient>
-
     <linearGradient id="bear" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0%" stop-color="#d9a17c"/>
       <stop offset="100%" stop-color="#b97c5d"/>
@@ -317,7 +364,6 @@ button {
   </defs>
 
   <circle cx="110" cy="100" r="86" fill="#ffd8e4" opacity=".75"/>
-
   <path d="M110 17 C87 -5 56 13 69 39 C80 58 110 70 110 70
            C110 70 140 58 151 39 C164 13 133 -5 110 17Z"
         fill="#f18da9"/>
@@ -342,24 +388,18 @@ button {
   <ellipse cx="143" cy="128" rx="10" ry="6" fill="#f5a2a9" opacity=".7"/>
 
   <ellipse cx="110" cy="192" rx="47" ry="29" fill="url(#bear)"/>
-
-  <ellipse cx="78" cy="166" rx="18" ry="28"
-           fill="#c58b69" transform="rotate(-32 78 166)"/>
-
-  <ellipse cx="142" cy="166" rx="18" ry="28"
-           fill="#c58b69" transform="rotate(32 142 166)"/>
+  <ellipse cx="78" cy="166" rx="18" ry="28" fill="#c58b69"
+           transform="rotate(-32 78 166)"/>
+  <ellipse cx="142" cy="166" rx="18" ry="28" fill="#c58b69"
+           transform="rotate(32 142 166)"/>
 
   <circle cx="110" cy="171" r="34" fill="url(#glow)" opacity=".9"/>
-
   <path d="M76 184 Q110 164 144 184 L136 201 Q110 212 84 201Z"
         fill="#d98b39"/>
-
   <path d="M81 185 Q110 193 139 185"
         stroke="#ffdf87" stroke-width="3" fill="none"/>
-
   <path d="M110 177 Q96 162 110 146 Q124 162 110 177Z"
         fill="#ffae37"/>
-
   <path d="M110 173 Q103 163 110 155 Q117 163 110 173Z"
         fill="#fff5b0"/>
 </svg>
@@ -374,36 +414,37 @@ const musicButton = document.getElementById("musicButton");
 const stories = [
   {
     image: "yukti-01.jpeg",
-    text: "How does someone manage to look this breathtaking without even trying? You are honestly my favourite kind of distraction. 😮‍💨"
+    text: "How does someone manage to look this breathtaking without even trying? You're honestly my favourite kind of distraction. 😮‍💨"
   },
   {
     image: "yukti-02.jpeg",
-    text: "This smile deserves its own festival and I hope I get to be one of the reasons behind it always 👀"
+    text: "This smile deserves its own festival. And I hope I get to be one of the reasons behind it, always. 🥹"
   },
   {
     image: "yukti-03.jpeg",
-    text: "If I could freeze one feeling in time it would be the feeling of being right next to you HONEY ❤️"
+    text: "If I could freeze one feeling in time, it would be the feeling of being right next to you. ❤️"
   },
   {
     image: "yukti-04.jpeg",
-    text: "The diyas can compete for brightness all they want. We both know who is stealing the show. 🪔✨"
+    text: "The diyas can compete for brightness all they want. We both know who's stealing the show. 🪔✨"
   },
   {
     image: "yukti-05.jpeg",
-    text: "Those legs are making me forget all about the festivities !! Ahhhh I so badly want to lift them tonight but let's keep things auspicious for now. 😏🪔",
-    extra: "Okay I will behave. For now. 🤭"
+    text: "Those legs are making me forget all about the festivities… I'd love to lift them tonight, but let's keep things auspicious for now. 😏🪔",
+    extra: "Okay, I'll behave. For now. 🤭"
   },
   {
     image: "yukti-06.jpeg",
-    text: "Pretty face dangerous charm absolutely and zero intention of letting me behave. You are divine babygirl 🫠"
+    text: "Pretty face, dangerous charm, absolutely zero intention of letting me behave. What a combination, Thepluuu. 🤭"
   },
   {
     image: "yukti-07.jpeg",
-    text: "My favourite person my favourite festival and hopefully many more Diwalis together. Here is to us. 💖"
+    text: "My favourite person, my favourite festival, and hopefully many more Diwalis together. Here's to us. 💖"
   }
 ];
 
 let current = -1;
+let diyaAlreadyLit = false;
 
 function addTeddy() {
   const clone = document.getElementById("teddy").content.cloneNode(true);
@@ -413,7 +454,7 @@ function addTeddy() {
 function updateProgress() {
   const total = stories.length + 2;
   const step = current + 1;
-  progressFill.style.width = (step / total * 100) + "%";
+  progressFill.style.width = Math.min(100, step / total * 100) + "%";
 }
 
 function startMusic() {
@@ -446,18 +487,14 @@ function showIntro() {
   content.innerHTML = `
     <div class="ending">
       <h1>Heyyy, my Thepluuu! 🪔</h1>
-
       <p>
         I have a tiny little Diwali surprise for someone
         who makes my world a whole lot brighter.
       </p>
-
       <p>
-        And obviously that someone is you my favourite human. ❤️
+        And obviously, that someone is you, my favourite human. ❤️
       </p>
-
-      <p class="small">A little something made with lots of love.</p>
-
+      <p class="small">A little something, made with lots of love.</p>
       <div class="buttons">
         <button class="primary" onclick="beginSurprise()">
           Open your surprise ✨
@@ -488,15 +525,11 @@ function nextStory() {
   content.innerHTML = `
     <div class="ending">
       <h2>A little something about you… 💗</h2>
-
       <img class="story-photo"
            src="${story.image}"
            alt="A beautiful picture of Yukti">
-
       <p>${story.text}</p>
-
       ${story.extra ? `<p>${story.extra}</p>` : ""}
-
       <div class="buttons">
         <button class="primary" onclick="nextStory()">
           ${current === stories.length - 1
@@ -515,23 +548,17 @@ function showQuestion() {
   content.innerHTML = `
     <div class="ending">
       <h1>One last question, baby… 💖</h1>
-
       <p>
-        After all this cuteness you didn't think I'd let you
-        go without asking something !! Did you?
+        After all this cuteness, you didn't think I'd let you
+        go without asking something, did you?
       </p>
-
-      <h2>Will you celebrate Diwali with me JAAN? 🪔</h2>
-
-      <p class="small">
-        Choose wisely. The NO button has trust issues. 🤭
-      </p>
+      <h2>Will you celebrate Diwali with me, Thepluuu? 🪔</h2>
+      <p class="small">Choose wisely. The NO button has trust issues. 🤭</p>
 
       <div class="question-buttons">
         <button class="primary" id="yesBtn" onclick="sayYes()">
           YESSS! 💗
         </button>
-
         <button id="noBtn" onclick="runAway()">NO 🙈</button>
       </div>
     </div>
@@ -556,52 +583,217 @@ function runAway() {
   noBtn.style.zIndex = "1000000";
 }
 
+/* YES: celebration first, then the final diya */
 function sayYes() {
   progressFill.style.width = "100%";
 
   content.innerHTML = `
     <div class="ending">
       <h1>YASSSSS, MY THEPLUUU!!! 💖</h1>
-
       <p>
-        I knew you would say yes baby girl! Here is to more laughter
-        more hugs more kisses and countless beautiful Diwalis together. Bohot pyar karta hoon baby please rehna hamesha mere sath mere pass. There is a lot of dreams I have seen with you aur wo sab pure karne hai. BE MINE 💋.
+        I knew you'd say yes, baby girl! Here's to more laughter,
+        more hugs, more kisses and countless beautiful Diwalis together.
       </p>
-
-      <h2>I love you my favourite patakha. 🪔😉</h2>
-
+      <h2>I love you, my favourite patakha. 🪔❤️</h2>
       <p>
-        Happy Diwali cookie! Forever my favourite celebration. ✨
+        Happy Diwali, cookie! Forever my favourite celebration. ✨
       </p>
-
       <p class="small">
-        P.S. You're stuck with me for many many Diwalis. 🤭
+        P.S. You're stuck with me for many, many Diwalis. 🤭
       </p>
+      <p class="small">And there's one last little surprise…</p>
     </div>
   `;
 
   addTeddy();
 
+  grandCelebration();
+
+  let count = 0;
+  const celebrationInterval = setInterval(() => {
+    grandCelebration();
+    count++;
+    if (count >= 4) clearInterval(celebrationInterval);
+  }, 2500);
+
+  // Give the celebration a few seconds before showing the diya.
+  setTimeout(showFinalDiya, 6500);
+}
+
+/* Final unlit diya screen */
+function showFinalDiya() {
+  content.innerHTML = `
+    <div class="ending">
+      <h1>One last little light, my love… 🪔</h1>
+
+      <p>
+        Before we end our little Diwali celebration,
+        I have one tiny wish for you.
+      </p>
+
+      <svg class="diya-art"
+           viewBox="0 0 220 230"
+           xmlns="http://www.w3.org/2000/svg"
+           role="img"
+           aria-label="A diya waiting to be lit">
+
+        <defs>
+          <radialGradient id="diyaGlow">
+            <stop offset="0%" stop-color="#ffd86b" stop-opacity=".85"/>
+            <stop offset="100%" stop-color="#ffbd45" stop-opacity="0"/>
+          </radialGradient>
+
+          <linearGradient id="diyaGold" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#ffcf68"/>
+            <stop offset="100%" stop-color="#c87527"/>
+          </linearGradient>
+        </defs>
+
+        <!-- Golden halo -->
+        <circle id="diyaGlow" class="diya-glow"
+                cx="110" cy="105" r="100"
+                fill="url(#diyaGlow)"/>
+
+        <!-- Sparkles -->
+        <g id="diyaSparkles" class="diya-sparkles"
+           fill="#f2b94b">
+          <path d="M45 65 L50 78 L63 83 L50 88 L45 101 L40 88 L27 83 L40 78Z"/>
+          <path d="M175 55 L179 66 L190 70 L179 74 L175 85 L171 74 L160 70 L171 66Z"/>
+          <path d="M180 125 L184 135 L194 139 L184 143 L180 153 L176 143 L166 139 L176 135Z"/>
+          <path d="M40 135 L44 145 L54 149 L44 153 L40 163 L36 153 L26 149 L36 145Z"/>
+        </g>
+
+        <!-- Wick -->
+        <path d="M110 150 Q106 137 110 124"
+              stroke="#66422c"
+              stroke-width="5"
+              stroke-linecap="round"
+              fill="none"/>
+
+        <!-- Hidden flame -->
+        <g id="diyaFlame" class="diya-flame">
+          <path d="M110 126
+                   C75 94 105 62 112 35
+                   C119 63 151 93 110 126Z"
+                fill="#ff9f32"/>
+
+          <path d="M110 117
+                   C91 96 109 78 112 59
+                   C127 86 129 101 110 117Z"
+                fill="#fff1a6"/>
+
+          <path d="M110 108
+                   C103 96 111 86 113 80
+                   C120 96 119 102 110 108Z"
+                fill="#fffdf0"/>
+        </g>
+
+        <!-- Diya bowl -->
+        <path d="M38 150
+                 Q110 177 182 150
+                 Q175 205 110 210
+                 Q45 205 38 150Z"
+              fill="url(#diyaGold)"
+              stroke="#b86b25"
+              stroke-width="3"/>
+
+        <ellipse cx="110" cy="151" rx="73" ry="17"
+                 fill="#f5bd58"
+                 stroke="#b86b25"
+                 stroke-width="3"/>
+
+        <path d="M53 160 Q110 180 167 160"
+              fill="none"
+              stroke="#ffe6a1"
+              stroke-width="4"
+              stroke-linecap="round"/>
+
+        <circle cx="110" cy="190" r="4" fill="#ffe6a1"/>
+      </svg>
+
+      <h2 id="diyaTitle">Your diya is waiting, cookie…</h2>
+
+      <p id="diyaText">
+        Tap below and let your little light shine. ✨
+      </p>
+
+      <div class="buttons">
+        <button class="primary" id="lightButton"
+                onclick="lightFinalDiya()">
+          🪔 Light your diya
+        </button>
+      </div>
+    </div>
+  `;
+
   document.getElementById("card").scrollIntoView({
     behavior: "smooth",
     block: "center"
   });
-
-  grandCelebration();
-
-  let count = 0;
-
-  const celebrationInterval = setInterval(() => {
-    grandCelebration();
-    count++;
-
-    if (count >= 4) {
-      clearInterval(celebrationInterval);
-    }
-  }, 2500);
 }
 
-/* Colourful falling paper confetti */
+/* Her tap lights the diya */
+function lightFinalDiya() {
+  if (diyaAlreadyLit) return;
+  diyaAlreadyLit = true;
+
+  const flame = document.getElementById("diyaFlame");
+  const glow = document.getElementById("diyaGlow");
+  const sparkles = document.getElementById("diyaSparkles");
+  const title = document.getElementById("diyaTitle");
+  const message = document.getElementById("diyaText");
+  const button = document.getElementById("lightButton");
+
+  flame.classList.add("lit");
+  glow.classList.add("lit");
+  sparkles.classList.add("lit");
+
+  title.textContent = "Look at your little light, my love. ❤️";
+
+  message.innerHTML =
+    "May this light bring you endless happiness, good health, beautiful dreams and all the love you deserve. And may I always be beside you. 🥹";
+
+  button.textContent = "A little message for you 💗";
+  button.onclick = showLastMessage;
+
+  grandCelebration();
+}
+
+/* The very last message */
+function showLastMessage() {
+  content.innerHTML = `
+    <div class="ending">
+      <h1>Happy Diwali, my love. ❤️</h1>
+
+      <p>
+        May your life always shine as beautifully as this little light.
+        May every dream find its way to you, every day bring you
+        a reason to smile, and every darkness turn into a new beginning.
+      </p>
+
+      <h2>And wherever life takes us, I hope we keep lighting a thousand more diyas together. 🪔</h2>
+
+      <p>
+        I love you, my Thepluuu. Today, tomorrow and in all the
+        Diwalis waiting for us. ❤️
+      </p>
+
+      <p class="small">
+        Forever your favourite person. 💖
+      </p>
+    </div>
+  `;
+
+  addTeddy();
+  grandCelebration();
+
+  document.getElementById("card").scrollIntoView({
+    behavior: "smooth",
+    block: "center"
+  });
+}
+
+/* Colourful paper confetti */
 function launchConfetti() {
   const colours = [
     "#ff4f87", "#ffd166", "#70d6ff",
@@ -630,7 +822,6 @@ function launchConfetti() {
       (Math.random() * .9) + "s";
 
     document.body.appendChild(piece);
-
     piece.addEventListener("animationend", () => piece.remove());
   }
 }
@@ -666,7 +857,6 @@ function firework(x, y) {
     );
 
     document.body.appendChild(particle);
-
     particle.addEventListener("animationend", () => particle.remove());
   }
 }
